@@ -1,12 +1,12 @@
 # Go IT projekt JavaScript - Filmoteka
 
-## Zalezności
+## Zależności
 
 Na komputerze musi być zainstalowana LTS-wersja [Node.js](https://nodejs.org/en/).
 
 ## Przed rozpoczęciem pracy
 
-Jeden raz na projekt zainstalować wszystkie zalezności.
+Jeden raz na projekt zainstalować wszystkie zależności:
 
 ```shell
 npm ci
@@ -14,22 +14,23 @@ npm ci
 
 ## Praca
 
-Włączyć tryb pracy.
+Włączyć tryb pracy:
 
 ```shell
 npm run dev
 ```
 
-W przeglądarce przejść na [http://localhost:1234](http://localhost:1234).
+W przeglądarce przejść na: [http://localhost:1234](http://localhost:1234).
 
 ## Deploy
 
 Kod będzie automatycznie się zbierać i robić deploy aktualnej wersji projektu na GitHub Pages, w gałąź `gh-pages`, za kazdym razem jeśli zostaną wprowadzone zmiany w `main`. Na przykład, po bezpośrenim push lub po przyjęciu pull-request. 
 
-Po jakimś czasie stronę mozna będzie zobaczyć na żywo pod adresem:
+Po pewnym czasie stronę mozna będzie zobaczyć na żywo pod adresem:
+
 [https://brzozanet.github.io/goit-projekt-js-9/](https://brzozanet.github.io/goit-projekt-js-9/).
 
-## Pliki i folderzy
+## Pliki i foldery
 
 - Wszystkie partiale plików stylów powinny być w folderze `src/sass` i importować się w `src/sass/main.scss`
 
