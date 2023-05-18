@@ -12,7 +12,7 @@ Jeden raz na projekt zainstalować wszystkie zalezności.
 npm ci
 ```
 
-### Praca
+## Praca
 
 Włączyć tryb pracy.
 
@@ -22,7 +22,7 @@ npm run dev
 
 W przeglądarce przejść na [http://localhost:1234](http://localhost:1234).
 
-### Deploy
+## Deploy
 
 Kod będzie automatycznie się zbierać i robić deploy aktualnej wersji projektu na GitHub Pages, w gałąź `gh-pages`, za kazdym razem jeśli zostaną wprowadzone zmiany w `main`. Na przykład, po bezpośrenim push lub po przyjęciu pull-request. 
 
