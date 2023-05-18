@@ -1,0 +1,118 @@
+.page-header {
+    height: 230px;
+    background-image: url(../images/backgroundHome-M@1x.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0 auto;
+
+    &__wrapper {
+        display: flex;
+        padding-top: 40px;
+    }
+
+    &__title {
+        color: $IColor;
+        font-size: 30px;
+    }
+
+    &__navigation--list {
+        display: flex;
+        gap: 40px;
+        padding-left: 112px;
+
+    }
+
+    &__navigation--link {
+        color: $IColor;
+        text-transform: uppercase;
+        font-size: 12px;
+        line-height: 1.16;
+    }
+
+    &__search {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    &__search-border {
+        width: 280px;
+        border-bottom: 0.5px solid $IColor ;
+    }
+}
+
+@media (min-device-pixel-ratio: 2),
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
+    .page-header {
+        background-image: url(../images/backgroundHome-M@2x.png);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .page-header {
+        &__title {
+            display: none;
+        }
+    }
+}
+
+// ️☎️ Mobile First ...END
+
+@media screen and (min-width: 768px) {
+    .page-header {
+        height: 216px;
+        background-image: url(../images/backgroundHome-T@1x.png);
+
+        &__wrapper {
+            padding-left: 31px;
+
+        }
+
+        &__title {
+            padding-left: 8px;
+        }
+
+        &__navigation--list {
+            padding-left: 387px;
+        }
+
+    }
+}
+
+@media (min-device-pixel-ratio: 2),
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
+    .page-main {
+        background-image: url(../images/backgroundHome-T@2x.png);
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .page-header {
+
+        background-image: url(../images/backgroundHome-D@1x.png);
+
+        &__wrapper {
+            padding-left: 32px;
+
+        }
+
+        &__title {
+            padding-left: 10px;
+        }
+
+        &__navigation--list {
+            padding-left: 898px;
+        }
+    }
+}
+
+@media (min-device-pixel-ratio: 2),
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
+    .page-main {
+        background-image: url(../images/backgroundHome-T@2x.png);
+    }
+}
