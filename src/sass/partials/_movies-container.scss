@@ -1,0 +1,48 @@
+//TESTOWy PLACEHOLDER
+.movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 62px;
+}
+//TESTOWY PLACEHOLDER
+.movie-placeholder {
+  //   flex: 0 0 100%;
+  width: 280px;
+  height: 402px;
+  background-color: blue;
+}
+
+@media screen and (min-width: 768px) {
+  .movies-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+    gap: 32px;
+  }
+  //TESTOWY PLACEHOLDER
+  .movie-placeholder {
+    // flex: 0 0 47%;
+    width: 336px;
+    height: 455px;
+    background-color: blue;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .movies-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  //TESTOWY PLACEHOLDER
+  .movie-placeholder {
+    margin-top: 40px;
+    flex: 0 0 32%;
+    width: 395px;
+    height: 574px;
+    background-color: blue;
+  }
+}
