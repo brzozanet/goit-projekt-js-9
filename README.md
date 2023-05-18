@@ -42,6 +42,8 @@ Po pewnym czasie stronę mozna będzie zobaczyć na żywo pod adresem:
   kopiuje wykorzystane zdjęcia aby system nie musiał ich optymalizować, bo na słabych komputerach 
   to moze zająć dużo czasu.
 
+## Ustawienia VSC  
+
 - WAŻNE: NIE uruchamiany watchera SASS (`Watch Sass`) w Visual Studio Code, ponieważ pliki css generują się z scss za pomocą Parcel JS
 
-- Wyłączamy autozapis w VSC, ponieważ każdy błąd w pliku, powstały choćby poprzez autozapis w czasie pisania instrukcji, skutkuje błędem Parcel JS.
+- Wyłączamy autozapis w Visual Studio Code, ponieważ każdy błąd w pliku, powstały choćby poprzez autozapis w czasie pisania instrukcji, skutkuje błędem Parcel JS.
