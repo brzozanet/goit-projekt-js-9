@@ -9,6 +9,7 @@ export const fetchMostPopular = () => {
       Authorization: `Bearer ${API_KEY}`,
     },
   };
+
   const moviesContainerEl = document.querySelector("#movies-container-index");
   const fetchPopularData = async () => {
     try {
@@ -23,6 +24,7 @@ export const fetchMostPopular = () => {
       console.error(error);
     }
   };
+
   const popularMovies = async () => {
     const results = await fetchPopularData();
     console.log(results);
