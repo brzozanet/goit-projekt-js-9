@@ -10,15 +10,12 @@
   //   flex: 0 0 100%;
   width: 280px;
   height: 402px;
-  background-color: blue;
+  // background-color: blue;
 }
 
 @media screen and (min-width: 768px) {
   .movies-container {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    flex-direction: row;
     gap: 32px;
   }
   //TESTOWY PLACEHOLDER
@@ -26,15 +23,12 @@
     // flex: 0 0 47%;
     width: 336px;
     height: 455px;
-    background-color: blue;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .movies-container {
-    display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
     gap: 16px;
   }
   //TESTOWY PLACEHOLDER
@@ -43,6 +37,7 @@
     flex: 0 0 32%;
     width: 395px;
     height: 574px;
-    background-color: blue;
+    border: solid 1px black;
+    color: black;
   }
 }
