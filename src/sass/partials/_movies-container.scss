@@ -41,3 +41,65 @@
     color: black;
   }
 }
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  &__content {
+    display: flex;
+    gap: 9px;
+  }
+  &__info {
+    padding-top: 8px;
+  }
+  &__title {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    text-transform: uppercase;
+    color: #000000;
+  }
+  &__genre {
+    display: inline;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    color: #ff6b08;
+  }
+  &__release {
+    display: inline;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    color: #ff6b08;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    padding: 60px 32px;
+    gap: 32px;
+  }
+  .card {
+    padding: 0;
+  }
+  .card__poster {
+    width: 336px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    .wrapper {
+      gap: 15px;
+      margin-bottom: 17px;
+    }
+    .card__poster {
+      width: 395px;
+    }
+  }
+}
