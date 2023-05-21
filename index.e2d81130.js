@@ -1,2 +1,0 @@
-(()=>{const e={method:"GET",headers:{accept:"application/json",Authorization:"Bearer d6196550a4e6b0a064e85de7d6547ab4"}},a=document.querySelector("#movies-container-index");(async()=>{const o=await(async()=>{try{const a=await fetch("https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",e);return(await a.json()).results}catch(e){console.error(e)}})();console.log(o),o.forEach((e=>{a.innerHTML+=`<div class="movie-placeholder">${e.original_title}</div>`}))})()})();
-//# sourceMappingURL=index.e2d81130.js.map
