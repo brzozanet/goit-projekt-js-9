@@ -12,8 +12,6 @@ axios
     console.log("Wystąpił błąd podczas pobierania gatunków:", error);
   });
 
-
-
 // const matchedGenres = [];
 
 // for (let i = 0; i < movie.genre_ids.length; i++) {
@@ -26,4 +24,3 @@ axios
 // }
 
 // console.log(matchedGenres);
-
