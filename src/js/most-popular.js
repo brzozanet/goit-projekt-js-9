@@ -1,5 +1,6 @@
 import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
+import { fetchGenres } from "./genres";
 
 export const fetchMostPopular = () => {
   const options = {
