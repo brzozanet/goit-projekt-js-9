@@ -1,0 +1,149 @@
+// ️☎️ Mobile First ...START
+.page-header-library {
+    height: 230px;
+    background-image: url(../images/backgroundLibrary-M@1x.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0 auto;
+
+    &__wrapper {
+        display: flex;
+        padding: 40px 20px 0;
+    }
+
+    &__title {
+        color: $IColor;
+        font-size: 30px;
+    }
+
+    &__navigation--list {
+        display: flex;
+        gap: 40px;
+        padding-left: 112px;
+    }
+
+    &__navigation--link {
+        color: $IColor;
+        text-transform: uppercase;
+        font-size: 12px;
+        line-height: 1.16;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding-top: 60px;
+
+        &-item {
+            width: 130px;
+            display: flex;
+            align-items: center;
+            padding: 13px 0;
+            justify-content: center;
+            color: $IColor;
+            border: solid 1px $IColor;
+            border-radius: 5px;
+            background-color: transparent;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 16px;
+        }
+
+        &-item:hover {
+            border: solid 1px $IbtnColor;
+            background-color: $IbtnColor;
+        }
+    }
+}
+
+@media (min-device-pixel-ratio: 2),
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
+    .page-header-library {
+        background-image: url(../images/backgroundLibrary-M@2x.png);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .page-header-library {
+        &__title {
+            display: none;
+        }
+    }
+}
+
+// ️☎️ Mobile First ...END
+
+@media screen and (min-width: 768px) {
+    .page-header-library {
+        height: 216px;
+        background-image: url(../images/backgroundLibrary-T@1x.png);
+
+        &__wrapper {
+            padding-left: 31px;
+            padding-right: 33px;
+        }
+
+        &__title {
+            padding-left: 8px;
+        }
+
+        &__navigation--list {
+            padding-left: 387px;
+        }
+
+        &__buttons {
+            gap: 32px;
+            padding-top: 40px;
+
+            &-item {
+                width: 152px;
+            }
+        }
+    }
+}
+
+@media (min-device-pixel-ratio: 2),
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
+    .page-main {
+        background-image: url(../images/backgroundLibrary-T@2x.png);
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .page-header-library {
+        background-image: url(../images/backgroundLibrary-D@1x.png);
+
+        &__wrapper {
+            padding-left: 32px;
+            padding-right: 32px;
+        }
+
+        &__title {
+            padding-left: 10px;
+        }
+
+        &__navigation--list {
+            padding-left: 898px;
+        }
+
+        &__buttons {
+            gap: 16px;
+
+            &-item {
+                width: 148px;
+            }
+        }
+    }
+}
+
+@media (min-device-pixel-ratio: 2),
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
+    .page-main {
+        background-image: url(../images/backgroundLibrary-T@2x.png);
+    }
+}
