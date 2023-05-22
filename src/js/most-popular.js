@@ -1,6 +1,5 @@
 import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
-import { fetchGenres } from "./genres";
 
 export const fetchMostPopular = () => {
   const options = {
@@ -28,8 +27,7 @@ export const fetchMostPopular = () => {
 
   const popularMovies = async () => {
     const results = await fetchPopularData();
-    console.log(results);
-
+    console.log(results); 
     results.forEach(movie => {
       moviesContainerEl.innerHTML += `
         <div id="card" class="card">
@@ -47,3 +45,5 @@ export const fetchMostPopular = () => {
   };
   popularMovies();
 };
+
+    
