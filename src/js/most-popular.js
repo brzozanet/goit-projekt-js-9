@@ -34,40 +34,41 @@ export const fetchMostPopular = () => {
       );
       const genreNames = await response.json();
 
-      return genreNames;
+      return genreNames.genres;
     } catch (error) {
       console.error(error);
     }
   };
 
-  const matchedGenres = [];
-
   const matchGenres = async () => {
-    const results = await fetchGenres();
-    results.forEach(genre => {
-      const genreId = genre.id;
-      const matchedGenre = genreNames.find(genre => genre.id === genreId);
-
-      if (matchedGenre) {
-        matchedGenres.push(matchedGenre.name);
+    const genres = await fetchGenres();
+    const popularMoviesData = await fetchPopularData();
+    const movies = popularMoviesData.map(movie => {
+      const movieGenresIds = movie.genre_ids;
+      const matchedGenres = [];
+      for (let i = 0; i < movieGenresIds.length; i++) {
+        for (let j = 0; j < genres.length; j++) {
+          if (movieGenresIds[i] === genres[j].id) {
+            matchedGenres.push(genres[i].name);
+          }
+        }
       }
+      movie.genres = matchedGenres;
+      return movie;
     });
+    popularMovies(movies);
   };
   matchGenres();
 
-  const popularMovies = async () => {
-    const results = await fetchPopularData();
-    console.log(results);
-    results.forEach(movie => {
+  const popularMovies = movies => {
+    movies.forEach(movie => {
       moviesContainerEl.innerHTML += `
         <div id="card" class="card">
-          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${
-        movie.original_title
-      }" title="${movie.original_title}" />
+          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}" />
           <div class="card__content">
             <div class="card__info">
               <div class="card__title">${movie.original_title}</div>
-              <div class="card__genre">${movie.genre_ids} |</div>
+              <div class="card__genre">${movie.genres.join(", ")} |</div>
               <div class="card__release">${movie.release_date.slice(0, 4)}</div>
             </div>
           </div>
@@ -75,5 +76,4 @@ export const fetchMostPopular = () => {
       `;
     });
   };
-  popularMovies();
 };
