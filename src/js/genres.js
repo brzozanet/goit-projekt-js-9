@@ -5,8 +5,8 @@ import axios from "axios";
 axios
   .get(`${URL}/genre/movie/list?api_key=${API_KEY}`)
   .then(response => {
-    const fetchGenres = response.data.genres;
-    console.log(fetchGenres);
+    const genreNames = response.data.genres;
+    console.log(genreNames);
   })
   .catch(error => {
     console.log("Wystąpił błąd podczas pobierania gatunków:", error);
