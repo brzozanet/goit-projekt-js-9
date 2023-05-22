@@ -19,6 +19,7 @@ export const fetchMostPopular = () => {
         options
       );
       const data = await response.json();
+      console.log(data.results);
 
       return data.results;
     } catch (error) {
@@ -33,6 +34,7 @@ export const fetchMostPopular = () => {
         options
       );
       const genreNames = await response.json();
+      console.log(genreNames.genres);
 
       return genreNames.genres;
     } catch (error) {
@@ -69,7 +71,8 @@ export const fetchMostPopular = () => {
             <div class="card__info">
               <div class="card__title">${movie.original_title}</div>
               <div class="card__genre">${movie.genres.join(", ")} |</div>
-              <div class="card__release">${movie.release_date.slice(0, 4)}</div>
+              <div class="card__release">${movie.release_date.slice(0, 4)} |</div>
+              <div class="card__rating">Rating: ${movie.vote_average}</div>
             </div>
           </div>
         </div>
