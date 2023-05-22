@@ -1,6 +1,5 @@
 import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
-import { genreNames } from "./genres";
 
 export const fetchMostPopular = () => {
   const options = {
@@ -12,6 +11,7 @@ export const fetchMostPopular = () => {
   };
 
   const moviesContainerEl = document.querySelector("#movies-container-index");
+
   const fetchPopularData = async () => {
     try {
       const response = await fetch(
@@ -25,6 +25,35 @@ export const fetchMostPopular = () => {
       console.error(error);
     }
   };
+
+  const fetchGenres = async () => {
+    try {
+      const response = await fetch(
+        `${URL}/genre/movie/list?api_key=${API_KEY}`,
+        options
+      );
+      const genreNames = await response.json();
+
+      return genreNames;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const matchedGenres = [];
+
+  const matchGenres = async () => {
+    const results = await fetchGenres();
+    results.forEach(genre => {
+      const genreId = genre.id;
+      const matchedGenre = genreNames.find(genre => genre.id === genreId);
+
+      if (matchedGenre) {
+        matchedGenres.push(matchedGenre.name);
+      }
+    });
+  };
+  matchGenres();
 
   const popularMovies = async () => {
     const results = await fetchPopularData();
