@@ -32,7 +32,7 @@ export const fetchMostPopular = () => {
 
     // TEST
 
-    const matchedGenres = [];
+    const matchedGenres = []; 
 
     for (let i = 0; i < movie.genre_ids.length; i++) {
       const genreId = movie.genre_ids[i];
