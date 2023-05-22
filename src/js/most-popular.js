@@ -47,5 +47,3 @@ export const fetchMostPopular = () => {
   };
   popularMovies();
 };
-
-console.log(fetchGenres);
