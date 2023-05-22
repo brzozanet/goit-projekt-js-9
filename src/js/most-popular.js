@@ -1,5 +1,6 @@
 import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
+import { fetchGenres } from "./genres";
 
 export const fetchMostPopular = () => {
   const options = {
@@ -28,6 +29,24 @@ export const fetchMostPopular = () => {
   const popularMovies = async () => {
     const results = await fetchPopularData();
     console.log(results);
+
+    // TEST
+
+    const matchedGenres = [];
+
+    for (let i = 0; i < movie.genre_ids.length; i++) {
+      const genreId = movie.genre_ids[i];
+      const matchedGenre = fetchGenres.find(genre => genre.id === genreId);
+
+      if (matchedGenre) {
+        matchedGenres.push(matchedGenre.name);
+      }
+    }
+
+    console.log(matchedGenres);
+
+    // TEST END
+
     results.forEach(movie => {
       moviesContainerEl.innerHTML += `
         <div id="card" class="card">
@@ -47,3 +66,5 @@ export const fetchMostPopular = () => {
   };
   popularMovies();
 };
+
+console.log(fetchGenres);
