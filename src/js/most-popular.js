@@ -1,5 +1,6 @@
 import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
+import { showSpinner, hideSpinner } from "./loading-spinner";
 
 export const fetchMostPopular = () => {
   const options = {
@@ -14,13 +15,14 @@ export const fetchMostPopular = () => {
 
   const fetchPopularData = async () => {
     try {
+      showSpinner();
       const response = await fetch(
         `${URL}movie/popular?language=${LANGUAGE}&page=1&api_key=${API_KEY}`,
         options
       );
       const data = await response.json();
       console.log(data.results);
-
+      hideSpinner();
       return data.results;
     } catch (error) {
       console.error(error);
@@ -66,12 +68,17 @@ export const fetchMostPopular = () => {
     movies.forEach(movie => {
       moviesContainerEl.innerHTML += `
         <div id="card" class="card">
-          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}" />
+          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${
+        movie.original_title
+      }" title="${movie.original_title}" />
           <div class="card__content">
             <div class="card__info">
               <div class="card__title">${movie.original_title}</div>
               <div class="card__genre">${movie.genres.join(", ")} |</div>
-              <div class="card__release">${movie.release_date.slice(0, 4)} |</div>
+              <div class="card__release">${movie.release_date.slice(
+                0,
+                4
+              )} |</div>
               <div class="card__rating">Rating: ${movie.vote_average}</div>
             </div>
           </div>
