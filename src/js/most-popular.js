@@ -30,29 +30,10 @@ export const fetchMostPopular = () => {
     const results = await fetchPopularData();
     console.log(results);
 
-    // TEST
-
-    const matchedGenres = []; 
-
-    for (let i = 0; i < movie.genre_ids.length; i++) {
-      const genreId = movie.genre_ids[i];
-      const matchedGenre = fetchGenres.find(genre => genre.id === genreId);
-
-      if (matchedGenre) {
-        matchedGenres.push(matchedGenre.name);
-      }
-    }
-
-    console.log(matchedGenres);
-
-    // TEST END
-
     results.forEach(movie => {
       moviesContainerEl.innerHTML += `
         <div id="card" class="card">
-          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${
-        movie.original_title
-      }" title="${movie.original_title}" />
+          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}" />
           <div class="card__content">
             <div class="card__info">
               <div class="card__title">${movie.original_title}</div>
