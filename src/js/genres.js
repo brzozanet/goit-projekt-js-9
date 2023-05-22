@@ -5,7 +5,7 @@ import axios from "axios";
 const axios = require("axios");
 
 axios
-  .get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`)
+  .get(`${URL}/genre/movie/list?api_key=${API_KEY}`)
   .then(response => {
     const fetchGenres = response.data.genres;
     console.log(fetchGenres);
