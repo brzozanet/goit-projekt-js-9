@@ -11,3 +11,18 @@ axios
   .catch(error => {
     console.log("Wystąpił błąd podczas pobierania gatunków:", error);
   });
+
+      //   // MATCH GENRES TEST START
+      // const matchedGenres = [];
+
+      // for (let i = 0; i < movie.genre_ids.length; i++) {
+      //   const genreId = movie.genre_ids[i];
+      //   const matchedGenre = genreNames.find(genre => genre.id === genreId);
+
+      //   if (matchedGenre) {
+      //     matchedGenres.push(matchedGenre.name);
+      //   }
+      // }
+
+      // console.log(matchedGenres);
+      // // MATCH GENRES TEST END
