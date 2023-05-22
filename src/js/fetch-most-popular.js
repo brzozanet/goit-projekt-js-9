@@ -14,7 +14,7 @@ export const fetchMostPopular = () => {
   const fetchPopularData = async () => {
     try {
       const response = await fetch(
-        `${URL}movie/popular?language=${LANGUAGE}&page=1`,
+        `${URL}movie/popular?language=${LANGUAGE}&page=1&api_key=${API_KEY}`,
         options
       );
       const data = await response.json();
