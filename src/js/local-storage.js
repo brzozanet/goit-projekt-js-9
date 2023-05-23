@@ -21,19 +21,19 @@ const keysName = {
   QUEUE: "queue",
 };
 
-const updateArray = evt => {
+const updateArray = event => {
   const watchedArray = load(keyName.WATCHED) || [];
   const queueArray = load(keyName.QUEUE) || [];
 
-  if (evt.target.innerText === "Add to watched") {
-    saveToLocalStorage(watchedArray, keysName.WATCHED, "WATCHED", evt);
-  } else if (evt.target === "Add to queue") {
-    saveToLocalStorage(queueArray, keysName.QUEUE, "QUEUE", evt);
+  if (event.target.innerText === "Add to watched") {
+    saveToLocalStorage(watchedArray, keysName.WATCHED, "WATCHED", event);
+  } else if (event.target === "Add to queue") {
+    saveToLocalStorage(queueArray, keysName.QUEUE, "QUEUE", event);
   }
 };
 
-function saveToLocalStorage(key, array, evt, keyIndex) {
+function saveToLocalStorage(key, array, event, keyIndex) {
   array.push(state.activeFilm);
   save(key, array);
-  evt.target.innerText = `Add to ${keyIndex}`;
+  event.target.innerText = `Add to ${keyIndex}`;
 }
