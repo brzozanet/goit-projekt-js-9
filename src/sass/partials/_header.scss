@@ -39,34 +39,11 @@
     width: 280px;
     border-bottom: 0.5px solid $IColor;
   }
-  &__buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    &-item {
-      width: 130px;
-      display: flex;
-      align-items: center;
-      padding: 13px 0;
-      justify-content: center;
-      color: $IColor;
-      border: solid 1px $IColor;
-      border-radius: 5px;
-      background-color: transparent;
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 16px;
-    }
-    &-item:hover {
-      border: solid 1px $IbtnColor;
-      background-color: $IbtnColor;
-    }
-  }
 }
 
 @media (min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi),
-  (min-resolution: 2dppx) {
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
   .page-header {
     background-image: url(../images/backgroundHome-M@2x.png);
   }
@@ -99,22 +76,16 @@
     &__navigation--list {
       padding-left: 387px;
     }
+
     &__search {
       padding: 20px;
-    }
-    &__buttons {
-      gap: 32px;
-      padding: 0;
-      &-item {
-        width: 152px;
-      }
     }
   }
 }
 
 @media (min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi),
-  (min-resolution: 2dppx) {
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
   .page-main {
     background-image: url(../images/backgroundHome-T@2x.png);
   }
@@ -135,18 +106,12 @@
     &__navigation--list {
       padding-left: 898px;
     }
-    &__buttons {
-      gap: 16px;
-      &-item {
-        width: 148px;
-      }
-    }
   }
 }
 
 @media (min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi),
-  (min-resolution: 2dppx) {
+(min-resolution: 192dpi),
+(min-resolution: 2dppx) {
   .page-main {
     background-image: url(../images/backgroundHome-T@2x.png);
   }
