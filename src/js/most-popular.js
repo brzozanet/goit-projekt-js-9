@@ -68,13 +68,18 @@ export const fetchMostPopular = () => {
   const popularMovies = movies => {
     movies.forEach(movie => {
       moviesContainerEl.innerHTML += `
-        <div id="card" class="card">
-          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}" />
+        <div id="card" class="card" data-modal-open>
+          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${
+        movie.original_title
+      }" title="${movie.original_title}" />
           <div class="card__content">
             <div class="card__info">
               <div class="card__title">${movie.original_title}</div>
               <div class="card__genre">${movie.genres.join(", ")} |</div>
-              <div class="card__release">${movie.release_date.slice(0, 4)} |</div>
+              <div class="card__release">${movie.release_date.slice(
+                0,
+                4
+              )} |</div>
               <div class="card__rating">Rating: ${movie.vote_average}</div>
             </div>
           </div>
