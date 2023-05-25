@@ -38,23 +38,31 @@
 
         &-item {
             width: 130px;
+            height: 44px;
             display: flex;
             align-items: center;
-            padding: 13px 0;
+            padding-top: 4px;
             justify-content: center;
             color: $IColor;
             border: solid 1px $IColor;
             border-radius: 5px;
             background-color: transparent;
+            font-family: $fontPrimary;
             font-weight: 500;
             font-size: 12px;
-            line-height: 16px;
+            line-height: 1.33;
+            text-transform: uppercase;
+            transition: 300ms;
         }
 
-        &-item:hover {
-            border: solid 1px $IbtnColor;
+        &-item:hover,
+        &-item:focus &-item.button-active {
+            border: transparent;
             background-color: $IbtnColor;
+            cursor: pointer;
+            transition: 300ms;
         }
+
     }
 }
 
