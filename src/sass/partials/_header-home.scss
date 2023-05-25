@@ -69,8 +69,8 @@
     background-image: url(../images/backgroundHome-T@1x.png);
 
     &__wrapper {
-      padding-left: 31px;
-      padding-right: 33px;
+      padding-left: 32px;
+      padding-right: 32px;
     }
 
     &__title {
@@ -83,6 +83,11 @@
 
     &__search {
       padding-top: 40px;
+    }
+
+    &__search-border {
+      width: 336px;
+
     }
 
     &__buttons {
@@ -115,6 +120,11 @@
 
     &__search {
       padding-top: 41px;
+    }
+
+    &__search-border {
+      width: 394px;
+
     }
 
     &__title {

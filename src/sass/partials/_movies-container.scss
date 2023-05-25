@@ -1,20 +1,6 @@
-@media screen and (min-width: 768px) {
-  .movies-container {
-    justify-content: center;
-    gap: 32px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .movies-container {
-    justify-content: space-between;
-    gap: 16px;
-  }
-}
-
 .wrapper {
   display: flex;
-  justify-content: center;
+  // justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
@@ -25,36 +11,42 @@
     display: flex;
     gap: 9px;
   }
+
   &__info {
     padding-top: 8px;
   }
+
   &__title {
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
     text-transform: uppercase;
-    color: #000000;
+    color: $IIColor;
   }
+
   &__genre {
     display: inline;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
-    color: #ff6b08;
+    color: $IIIColor;
+
   }
+
   &__release {
     display: inline;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
-    color: #ff6b08;
+    color: $IIIColor;
   }
+
   &__rating {
     display: inline;
     font-weight: 500;
     font-size: 12px;
     line-height: 1.33;
-    color: #ff6b08;
+    color: $IIIColor;
   }
 }
 
@@ -63,18 +55,29 @@
     padding: 60px 32px;
     gap: 32px;
   }
+
   .card {
-    padding: 0;
+    &__info {
+      width: 336px;
+    }
   }
+
   .card__poster {
     width: 336px;
   }
 
   @media screen and (min-width: 1280px) {
     .wrapper {
+      padding: 60px 32px;
       gap: 15px;
-      margin-bottom: 17px;
     }
+
+    .card {
+      &__info {
+        width: 395px;
+      }
+    }
+
     .card__poster {
       width: 395px;
     }
