@@ -1,9 +1,40 @@
 .wrapper {
   display: flex;
-  // justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
+  background-color: $IColor;
+  transition: 800ms;
+
+}
+
+.card {
+  animation: 1200ms cubic-bezier(.25, .25, .25, 1.15) both fade-in;
+}
+
+@for $i from 1 through 20 {
+  .card {
+    &:nth-child(#{$i}) {
+      animation-delay: $i * (250ms);
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotateY(0);
+  }
+}
+
+.hidden {
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: 600ms;
 }
 
 .card {
@@ -70,6 +101,10 @@
     .wrapper {
       padding: 60px 32px;
       gap: 15px;
+    }
+
+    .hidden {
+      background-color: transparent;
     }
 
     .card {

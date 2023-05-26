@@ -1,6 +1,6 @@
-import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { showSpinner, hideSpinner } from "./loading-spinner";
+
 export const fetchMostPopular = () => {
   const options = {
     method: "GET",
@@ -10,8 +10,6 @@ export const fetchMostPopular = () => {
     },
   };
 
-  const moviesContainerEl = document.querySelector("#gallery");
-
   const fetchPopularData = async () => {
     try {
       showSpinner();
@@ -20,7 +18,6 @@ export const fetchMostPopular = () => {
         options
       );
       const data = await response.json();
-      console.log(data.results);
       hideSpinner();
       return data.results;
     } catch (error) {
@@ -35,7 +32,6 @@ export const fetchMostPopular = () => {
         options
       );
       const genreNames = await response.json();
-
       return genreNames.genres;
     } catch (error) {
       console.error(error);
@@ -78,19 +74,19 @@ export const fetchMostPopular = () => {
               <div class="card__release">${movie.release_date.slice(0, 4)}</div>
             </div>
           </div>`;
-      const modalEL = document.getElementById("modalBox");
 
-      console.log(modalEL);
+      const moviesContainerEl = document.querySelector("#gallery");
 
       moviesContainerEl.appendChild(card);
+      moviesContainerEl.classList.remove("hidden");
 
-      // showModal
+      // show Modal
 
       card.addEventListener("click", () => {
         modalBoxShow(movie);
       });
       const modalBoxShow = movie => {
-        let popupEl = document.querySelector(".backdrop");
+        const popupEl = document.querySelector(".backdrop");
         const closeBtnEl = document.querySelector(".modal__btn-close");
         const imageEl = document.querySelector(".modal__photo");
         const titleEl = document.querySelector(".modal__title");
@@ -102,17 +98,38 @@ export const fetchMostPopular = () => {
         const aboutEl = document.querySelector(".modal__about-text");
 
         popupEl.classList.remove("is-hidden");
+        moviesContainerEl.classList.add("hidden");
         imageEl.src = `${IMG_URL}${movie.poster_path}`;
         titleEl.innerHTML = `${movie.original_title}`;
         voteEl.innerHTML = `${movie.vote_average}`;
         votesEl.innerHTML = `${movie.vote_count}`;
         popularityEl.innerHTML = `${movie.popularity}`;
         originalTitleEl.innerHTML = `${movie.original_title}`;
-        genreEl.innerHTML = `${movie.genres}`;
+        genreEl.innerHTML = `${movie.genres.join(", ")}`;
         aboutEl.innerHTML = `${movie.overview}`;
+
+        // hide Modal
 
         closeBtnEl.addEventListener("click", () => {
           popupEl.classList.add("is-hidden");
+          moviesContainerEl.classList.remove("hidden");
+        });
+        window.addEventListener("keyup", e => {
+          if (e.key === "Escape") {
+            popupEl.classList.add("is-hidden");
+          }
+        });
+        window.addEventListener("keyup", e => {
+          if (e.key === "Escape") {
+            popupEl.classList.add("is-hidden");
+            moviesContainerEl.classList.remove("hidden");
+          }
+        });
+        window.addEventListener("click", e => {
+          if (e.target.classList.contains("backdrop")) {
+            popupEl.classList.add("is-hidden");
+            moviesContainerEl.classList.remove("hidden");
+          }
         });
       };
     });
