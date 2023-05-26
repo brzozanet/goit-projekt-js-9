@@ -1,0 +1,30 @@
+.hidden {
+  display: none;
+}
+
+.show-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.show-more {
+  padding: 13px 11px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  align-items: center;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+  border: #f7f7f7;
+  cursor: pointer;
+  transition-property: background-color, color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.show-more:hover {
+  background-color: #FF6B08;
+  color: #FFFFFF;
+}
