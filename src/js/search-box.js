@@ -1,10 +1,9 @@
 import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 
-const SEARCH_API = `${URL}/search/movie?api_key=${API_KEY}query="`;
+const SEARCH_API = `${URL}/search/movie?api_key=${API_KEY}&query=`;
 const API_URL = fetch(
-  `${URL}/discover/movie?include_adult=false&include_video=false&language=${LANGUAGE}&page=1&sort_by=popularity.desc",
-      options`
+  `${URL}/discover/movie?include_adult=false&include_video=false&language=${LANGUAGE}&page=1&sort_by=popularity.desc`
 )
   .then(response => response.json())
   .then(response => console.log(response))
@@ -23,28 +22,38 @@ async function getMovies(url) {
   showMovies(data.results);
 }
 
-const showMovies = movies => {
+function showMovies(movies) {
+  moviesContainerEl.innerHTML = "";
+
   movies.forEach(movie => {
-    moviesContainerEl.innerHTML += `
-        <div id="card" class="card">
-          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${
-      movie.original_title
-    }" title="${movie.original_title}" />
-          <div class="card__content">
-            <div class="card__info">
-              <div class="card__title">${movie.original_title}</div>
-              <div class="card__genre">${movie.genres.join(", ")} |</div>
-              <div class="card__release">${movie.release_date.slice(
-                0,
-                4
-              )} |</div>
-              <div class="card__rating">Rating: ${movie.vote_average}</div>
+    const { original_title, poster_path, vote_average, release_date, genres } =
+      movie;
+
+    const movieEl = document.createElement("div");
+    movieEl.classList.add("card");
+
+    movieEl.innerHTML = `
+    <div id="card" class="card">
+             <img class="card__poster" src="${IMG_URL}${
+      movie.poster_path
+    }" alt="${movie.original_title}" title="${movie.original_title}" />
+           <div class="card__content">
+                <div class="card__info">
+                  <div class="card__title">${movie.original_title}</div>
+                  <div class="card__genre">${movie.genres} |</div>
+                  <div class="card__release">${movie.release_date.slice(
+                    0,
+                    4
+                  )} |</div>
+                  <div class="card__rating">Rating: ${movie.vote_average}</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      `;
+          `;
+
+    moviesContainerEl.appendChild(movieEl);
   });
-};
+}
 
 form.addEventListener("submit", e => {
   e.preventDefault();
