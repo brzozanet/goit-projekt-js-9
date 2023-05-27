@@ -1,4 +1,5 @@
 export { toggleWatched, toggleQueue };
+
 window.addEventListener("load", () => {
   document
     .querySelector("#modal__button-watched")
@@ -7,6 +8,7 @@ window.addEventListener("load", () => {
     .querySelector("#modal__button-queue")
     .addEventListener("click", toggleQueue);
 });
+
 function toggleWatched() {
   document
     .querySelector("#modal__button-watched")
@@ -23,6 +25,7 @@ function toggleWatched() {
       "Add to watched";
   }
 }
+
 function toggleQueue() {
   document
     .querySelector("#modal__button-queue")

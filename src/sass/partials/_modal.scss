@@ -1,241 +1,205 @@
 .backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: translate(0%, 0%);
-    transition: 600ms;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: translate(0%, 0%);
+  transition: 600ms;
 }
-
 .is-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translate(0%, -100%);
-    transition: 700ms ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(0%, -100%);
+  transition: 700ms ease-in-out;
 }
-
 .modal {
+  position: absolute;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 500px;
+  background-color: $IColor;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 48px 20px 20px;
+  overflow: hidden visible;
+  transition: 1000ms;
+  &__photo {
+    margin-bottom: 20px;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+  }
+  &__btn {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  &__btn-close {
+    cursor: pointer;
     position: absolute;
-    box-sizing: border-box;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 280px;
-    height: 500px;
+    right: 8px;
+    top: 13px;
+    fill: $IIColor;
+    border: transparent;
+    background-color: transparent;
+    transform: rotate(0);
+    animation: pulseBtn 3200ms infinite;
+    filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.5));
+    box-shadow: none;
+  }
+  &__btn-close:hover,
+  &__btn-close:focus {
+    box-shadow: none;
+  }
+  @keyframes pulseBtn {
+    0% {
+      transform: rotate(0deg);
+      filter: drop-shadow(3px 6px 2px rgba(0, 0, 0, 0.5));
+    }
+    50% {
+      transform: rotate(70deg);
+      filter: drop-shadow(3px 15px 3px rgba(0, 0, 0, 0.5));
+    }
+    70% {
+      transform: rotate(-30deg);
+      filter: drop-shadow(3px 6px 2px rgba(0, 0, 0, 0.5));
+    }
+    82% {
+      transform: rotate(16deg);
+      filter: drop-shadow(3px 15px 3px rgba(0, 0, 0, 0.5));
+    }
+    90% {
+      transform: rotate(-10deg);
+      filter: drop-shadow(3px 6px 2px rgba(0, 0, 0, 0.5));
+    }
+    100% {
+      transform: rotate(0deg);
+      filter: drop-shadow(3px 6px 2px rgba(0, 0, 0, 0.5));
+    }
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  &__title {
+    text-shadow: 3px 4px 3px rgba(0, 0, 0, 0.12),
+      2px 2px 2px rgba(0, 0, 0, 0.14), 2px 3px 2px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+  }
+  &__stats-list {
+    display: flex;
+    padding-bottom: 8px;
+  }
+  &__stats-info {
+    width: 100px;
+    font-size: 12px;
+    line-height: 1.33;
+    color: $modalBgColor;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+  }
+  &__stats-result {
+    width: 115px;
+    font-size: 12px;
+    line-height: 1.33;
+    color: $IIColor;
+  }
+  &__stats-vote {
+    background-color: $IImodalColor;
+    color: $IColor;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 12px;
+    line-height: 1.33;
+  }
+  &__stats-votes {
+    font-size: 12px;
+    line-height: 1.33;
+    color: $IIColor;
+  }
+  &__about {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  &__about-header {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.33;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.12),
+      2px 2px 2px rgba(0, 0, 0, 0.14), 1px 1px 1px rgba(0, 0, 0, 0.2);
+  }
+  &__about-text {
+    font-size: 12px;
+    line-height: 1.66;
+  }
+  &__info-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  &__button {
+    width: 110px;
+    height: 44px;
+    border-radius: 5px;
+    border: transparent;
+    outline: 1px solid $IIColor;
     background-color: $IColor;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
-        0px 2px 1px rgba(0, 0, 0, 0.2);
-    border-radius: 4px;
-    padding: 48px 20px 20px;
-    overflow: hidden visible;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 12px;
+    font-family: $fontPrimary;
+    line-height: 1.33;
+    padding: 3px 5px 0;
     transition: 1000ms;
-
-
-    &__photo {
-        margin-bottom: 20px;
-    }
-
-    &__item {
-        display: flex;
-        flex-direction: column;
-    }
-
-    &__btn {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-bottom: 40px;
-    }
-
-    &__btn-close {
-        cursor: pointer;
-        position: absolute;
-        right: 8px;
-        top: 13px;
-        fill: $IIColor;
-        border: transparent;
-        background-color: transparent;
-        transform: rotate(0);
-        animation: pulseBtn 3200ms infinite;
-        filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.5));
-        box-shadow: none;
-    }
-
-    &__btn-close:hover,
-    &__btn-close:focus {
-        box-shadow: none;
-
-    }
-
-    @keyframes pulseBtn {
-        0% {
-            transform: rotate(0deg);
-            filter: drop-shadow(3px 6px 2px rgba(0, 0, 0, 0.5));
-        }
-
-        50% {
-            transform: rotate(70deg);
-            filter: drop-shadow(3px 15px 3px rgba(0, 0, 0, 0.5));
-        }
-
-        70% {
-            transform: rotate(-30deg);
-            filter: drop-shadow(3px 6px 2px rgba(0, 0, 0, 0.5));
-        }
-
-        82% {
-            transform: rotate(16deg);
-            filter: drop-shadow(3px 15px 3px rgba(0, 0, 0, 0.5));
-        }
-
-        90% {
-            transform: rotate(-10deg);
-            filter: drop-shadow(3px 6px 2px rgba(0, 0, 0, 0.5));
-        }
-
-        100% {
-            transform: rotate(0deg);
-            filter: drop-shadow(3px 6px 2px rgba(0, 0, 0, 0.5));
-        }
-    }
-
-    &__info {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        margin-bottom: 20px;
-    }
-
-    &__title {
-        text-shadow: 3px 4px 3px rgba(0, 0, 0, 0.12), 2px 2px 2px rgba(0, 0, 0, 0.14), 2px 3px 2px rgba(0, 0, 0, 0.2);
-        text-transform: uppercase;
-    }
-
-    &__stats-list {
-        display: flex;
-        padding-bottom: 8px;
-    }
-
-    &__stats-info {
-        width: 100px;
-        font-size: 12px;
-        line-height: 1.33;
-        color: $modalBgColor;
-        text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    }
-
-    &__stats-result {
-        width: 115px;
-        font-size: 12px;
-        line-height: 1.33;
-        color: $IIColor;
-    }
-
-    &__stats-vote {
-        background-color: $IImodalColor;
-        color: $IColor;
-        border-radius: 5px;
-        padding: 0 10px;
-        font-size: 12px;
-        line-height: 1.33;
-    }
-
-    &__stats-votes {
-        font-size: 12px;
-        line-height: 1.33;
-        color: $IIColor;
-    }
-
-    &__about {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
-
-    &__about-header {
-        text-transform: uppercase;
-        font-size: 12px;
-        font-weight: 500;
-        line-height: 1.33;
-        text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.12), 2px 2px 2px rgba(0, 0, 0, 0.14), 1px 1px 1px rgba(0, 0, 0, 0.2);
-    }
-
-    &__about-text {
-        font-size: 12px;
-        line-height: 1.66;
-    }
-
-    &__info-buttons {
-        display: flex;
-        gap: 20px;
-    }
-
-    &__button {
-        width: 110px;
-        height: 44px;
-        border-radius: 5px;
-        border: transparent;
-        outline: 1px solid $IIColor;
-        background-color: $IColor;
-        text-transform: uppercase;
-        font-weight: 500;
-        font-size: 12px;
-        font-family: $fontPrimary;
-        line-height: 1.33;
-        padding: 3px 5px 0;
-        transition: 1000ms;
-    }
-
-    &__button:hover,
-    &__button:focus,
-    &__button.button-active {
-        background-color: $IImodalColor;
-        color: $IColor;
-        cursor: pointer;
-        outline: transparent;
-        transition: 300ms;
-        box-shadow: 8px 8px 8px 3px rgba(0, 0, 0, 0.2),
-            9px 9px 20px 2px rgba(0, 0, 0, 0.4);
-    }
+  }
+  &__button:hover,
+  &__button:focus,
+  &__button.button-active {
+    background-color: $IImodalColor;
+    color: $IColor;
+    cursor: pointer;
+    outline: transparent;
+    transition: 300ms;
+    box-shadow: 8px 8px 8px 3px rgba(0, 0, 0, 0.2),
+      9px 9px 20px 2px rgba(0, 0, 0, 0.4);
+  }
 }
-
-
 @media screen and (min-width: 768px) {
+  .modal {
+    width: 704px;
+    height: auto;
+    overflow: hidden;
+    &__item {
+      display: flex;
+      flex-direction: row;
+      gap: 68px;
+    }
+    &__photo {
+      width: 264px;
+      padding-right: 0;
+    }
+    &__button {
+      width: 125px;
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    .backdrop {
+      background-color: rgba(0, 0, 0, 0);
+    }
     .modal {
-        width: 704px;
-        height: auto;
-        overflow: hidden;
-
-
-        &__item {
-            display: flex;
-            flex-direction: row;
-            gap: 68px;
-        }
-
-        &__photo {
-            width: 264px;
-            padding-right: 0;
-
-        }
-
-        &__button {
-            width: 125px;
-        }
+      width: 806px;
+      height: auto;
+      overflow: hidden;
     }
-
-    @media screen and (min-width: 1200px) {
-        .backdrop {
-            background-color: rgba(0, 0, 0, 0.0);
-
-        }
-
-        .modal {
-            width: 806px;
-            height: auto;
-            overflow: hidden;
-        }
-    }
+  }
 }
