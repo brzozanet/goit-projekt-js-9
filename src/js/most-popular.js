@@ -1,7 +1,10 @@
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { showSpinner, hideSpinner } from "./loading-spinner";
 
-export const fetchMostPopular = () => {
+export const fetchMostPopular = async () => {
+  let currentPage = 1;
+  const moviesPerPage = 20;
+  let totalPages = 0;
   const options = {
     method: "GET",
     headers: {
@@ -10,16 +13,19 @@ export const fetchMostPopular = () => {
     },
   };
 
-  const fetchPopularData = async () => {
+  const moviesContainerEl = document.querySelector("#gallery");
+  const showMoreButtonEl = document.querySelector(".show-more");
+
+  const fetchPopularData = async page => {
     try {
       showSpinner();
       const response = await fetch(
-        `${URL}movie/popular?language=${LANGUAGE}&page=1&api_key=${API_KEY}`,
+        `${URL}movie/popular?language=${LANGUAGE}&page=${page}&api_key=${API_KEY}`,
         options
       );
       const data = await response.json();
       hideSpinner();
-      return data.results;
+      return data;
     } catch (error) {
       console.error(error);
     }
@@ -28,7 +34,7 @@ export const fetchMostPopular = () => {
   const fetchGenres = async () => {
     try {
       const response = await fetch(
-        `${URL}/genre/movie/list?api_key=${API_KEY}`,
+        `${URL}genre/movie/list?api_key=${API_KEY}`,
         options
       );
       const genreNames = await response.json();
@@ -40,14 +46,14 @@ export const fetchMostPopular = () => {
 
   const matchGenres = async () => {
     const genres = await fetchGenres();
-    const popularMoviesData = await fetchPopularData();
-    const movies = popularMoviesData.map(movie => {
+    const popularMoviesData = await fetchPopularData(currentPage);
+    const movies = popularMoviesData.results.map(movie => {
       const movieGenresIds = movie.genre_ids;
       const matchedGenres = [];
       for (let i = 0; i < movieGenresIds.length; i++) {
         for (let j = 0; j < genres.length; j++) {
           if (movieGenresIds[i] === genres[j].id) {
-            matchedGenres.push(genres[i].name);
+            matchedGenres.push(genres[j].name);
           }
         }
       }
@@ -55,25 +61,57 @@ export const fetchMostPopular = () => {
       return movie;
     });
     popularMovies(movies);
+    totalPages = popularMoviesData.total_pages;
+
+    if (currentPage < totalPages) {
+      showMoreButtonEl.style.display = "block";
+    } else {
+      showMoreButtonEl.style.display = "none";
+    }
   };
-  matchGenres();
+
+  const showMoreMovies = async () => {
+    currentPage++;
+    const popularMoviesData = await fetchPopularData(currentPage);
+    const movies = popularMoviesData.results.map(movie => {
+      const movieGenresIds = movie.genre_ids;
+      const matchedGenres = [];
+      for (let i = 0; i < movieGenresIds.length; i++) {
+        for (let j = 0; j < genres.length; j++) {
+          if (movieGenresIds[i] === genres[j].id) {
+            matchedGenres.push(genres[j].name);
+          }
+        }
+      }
+      movie.genres = matchedGenres;
+      return movie;
+    });
+    popularMovies(movies);
+    if (currentPage === totalPages) {
+      showMoreButtonEl.style.display = "none";
+    }
+  };
+
+  showMoreButtonEl.addEventListener("click", showMoreMovies);
 
   const popularMovies = movies => {
     movies.forEach(movie => {
       const card = document.createElement("div");
       card.className = "card";
       card.innerHTML = `<div id="card" class="card" >
-                   <img  class="card__poster" src="${IMG_URL}${
-        movie.poster_path
-      }" alt="${movie.original_title}" title="${movie.original_title}" />
-                      </div>
-                       <div class="card__content">
-           <div class="card__info">
-               <div class="card__title">${movie.original_title}</div>
-            <div class="card__genre">${movie.genres.join(", ")} |</div>
-              <div class="card__release">${movie.release_date.slice(0, 4)}</div>
-            </div>
-          </div>`;
+
+        <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${
+        movie.original_title
+      }" title="${movie.original_title}" />
+      </div>
+      <div class="card__content">
+        <div class="card__info">
+          <div class="card__title">${movie.original_title}</div>
+          <div class="card__genre">${movie.genres.join(", ")} |</div>
+          <div class="card__release">${movie.release_date.slice(0, 4)}</div>
+        </div>
+      </div>`;
+      const modalEL = document.getElementById("modalBox");
 
       const moviesContainerEl = document.querySelector("#gallery");
 
@@ -85,6 +123,7 @@ export const fetchMostPopular = () => {
       card.addEventListener("click", () => {
         modalBoxShow(movie);
       });
+
       const modalBoxShow = movie => {
         const popupEl = document.querySelector(".backdrop");
         const closeBtnEl = document.querySelector(".modal__btn-close");
@@ -132,7 +171,12 @@ export const fetchMostPopular = () => {
           }
         });
       };
+      
     });
   };
+
+  const genres = await fetchGenres();
+  await matchGenres();
 };
+
 fetchMostPopular();
