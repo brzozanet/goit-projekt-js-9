@@ -1,4 +1,3 @@
-import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { showSpinner, hideSpinner } from "./loading-spinner";
 
@@ -6,7 +5,6 @@ export const fetchMostPopular = async () => {
   let currentPage = 1;
   const moviesPerPage = 20;
   let totalPages = 0;
-
   const options = {
     method: "GET",
     headers: {
@@ -26,7 +24,6 @@ export const fetchMostPopular = async () => {
         options
       );
       const data = await response.json();
-      console.log(data.results);
       hideSpinner();
       return data;
     } catch (error) {
@@ -41,7 +38,6 @@ export const fetchMostPopular = async () => {
         options
       );
       const genreNames = await response.json();
-
       return genreNames.genres;
     } catch (error) {
       console.error(error);
@@ -103,6 +99,7 @@ export const fetchMostPopular = async () => {
       const card = document.createElement("div");
       card.className = "card";
       card.innerHTML = `<div id="card" class="card" >
+
         <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${
         movie.original_title
       }" title="${movie.original_title}" />
@@ -116,42 +113,65 @@ export const fetchMostPopular = async () => {
       </div>`;
       const modalEL = document.getElementById("modalBox");
 
-      console.log(modalEL);
+      const moviesContainerEl = document.querySelector("#gallery");
 
       moviesContainerEl.appendChild(card);
+      moviesContainerEl.classList.remove("hidden");
 
-      // showModal
+      // show Modal
 
       card.addEventListener("click", () => {
         modalBoxShow(movie);
       });
-    });
-  };
 
-  const modalBoxShow = movie => {
-    let popupEl = document.querySelector(".backdrop");
-    const closeBtnEl = document.querySelector(".modal__btn-close");
-    const imageEl = document.querySelector(".modal__photo");
-    const titleEl = document.querySelector(".modal__title");
-    const voteEl = document.querySelector(".modal__stats-vote");
-    const votesEl = document.querySelector(".modal__stats-votes");
-    const popularityEl = document.querySelector(".modal__popularity");
-    const originalTitleEl = document.querySelector(".modal__film-title");
-    const genreEl = document.querySelector(".modal__genre");
-    const aboutEl = document.querySelector(".modal__about-text");
+      const modalBoxShow = movie => {
+        const popupEl = document.querySelector(".backdrop");
+        const closeBtnEl = document.querySelector(".modal__btn-close");
+        const imageEl = document.querySelector(".modal__photo");
+        const titleEl = document.querySelector(".modal__title");
+        const voteEl = document.querySelector(".modal__stats-vote");
+        const votesEl = document.querySelector(".modal__stats-votes");
+        const popularityEl = document.querySelector(".modal__popularity");
+        const originalTitleEl = document.querySelector(".modal__film-title");
+        const genreEl = document.querySelector(".modal__genre");
+        const aboutEl = document.querySelector(".modal__about-text");
 
-    popupEl.classList.remove("is-hidden");
-    imageEl.src = `${IMG_URL}${movie.poster_path}`;
-    titleEl.innerHTML = `${movie.original_title}`;
-    voteEl.innerHTML = `${movie.vote_average}`;
-    votesEl.innerHTML = `${movie.vote_count}`;
-    popularityEl.innerHTML = `${movie.popularity}`;
-    originalTitleEl.innerHTML = `${movie.original_title}`;
-    genreEl.innerHTML = `${movie.genres}`;
-    aboutEl.innerHTML = `${movie.overview}`;
+        popupEl.classList.remove("is-hidden");
+        moviesContainerEl.classList.add("hidden");
+        imageEl.src = `${IMG_URL}${movie.poster_path}`;
+        titleEl.innerHTML = `${movie.original_title}`;
+        voteEl.innerHTML = `${movie.vote_average}`;
+        votesEl.innerHTML = `${movie.vote_count}`;
+        popularityEl.innerHTML = `${movie.popularity}`;
+        originalTitleEl.innerHTML = `${movie.original_title}`;
+        genreEl.innerHTML = `${movie.genres.join(", ")}`;
+        aboutEl.innerHTML = `${movie.overview}`;
 
-    closeBtnEl.addEventListener("click", () => {
-      popupEl.classList.add("is-hidden");
+        // hide Modal
+
+        closeBtnEl.addEventListener("click", () => {
+          popupEl.classList.add("is-hidden");
+          moviesContainerEl.classList.remove("hidden");
+        });
+        window.addEventListener("keyup", e => {
+          if (e.key === "Escape") {
+            popupEl.classList.add("is-hidden");
+          }
+        });
+        window.addEventListener("keyup", e => {
+          if (e.key === "Escape") {
+            popupEl.classList.add("is-hidden");
+            moviesContainerEl.classList.remove("hidden");
+          }
+        });
+        window.addEventListener("click", e => {
+          if (e.target.classList.contains("backdrop")) {
+            popupEl.classList.add("is-hidden");
+            moviesContainerEl.classList.remove("hidden");
+          }
+        });
+      };
+      
     });
   };
 

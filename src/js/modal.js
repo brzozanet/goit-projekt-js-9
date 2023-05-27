@@ -1,18 +1,4 @@
-// export const showModal = () => {
-//   const refs = {
-//     openModalBtn: document.querySelector("[data-modal-open]"),
-//     closeModalBtn: document.querySelector("[data-modal-close]"),
-//     modal: document.querySelector("[data-modal]"),
-//   };
-
-//   function toggleModal() {
-//     refs.modal.classList.toggle("is-hidden");
-//   }
-
-//   refs.openModalBtn.addEventListener("click", toggleModal);
-//   refs.closeModalBtn.addEventListener("click", toggleModal);
-// };
-export { showModal, closeModal, toggleWatched, toggleQueue };
+export { toggleWatched, toggleQueue };
 window.addEventListener("load", () => {
   document
     .querySelector("#modal__button-watched")
@@ -20,15 +6,6 @@ window.addEventListener("load", () => {
   document
     .querySelector("#modal__button-queue")
     .addEventListener("click", toggleQueue);
-  document.addEventListener("keyup", e => {
-    if (e.key === "Escape") closeModal();
-  });
-  document.addEventListener("click", e => {
-    if (!e.target.classList.contains("modal")) closeModal();
-  });
-  document.querySelector(".modal").addEventListener("click", e => {
-    e.stopPropagation();
-  });
 });
 function toggleWatched() {
   document
