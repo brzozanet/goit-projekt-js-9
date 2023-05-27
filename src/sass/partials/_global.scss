@@ -34,9 +34,9 @@ p {
 img {
   width: 100%;
   border-radius: 5px;
-  box-shadow: 3px 4px 3px rgba(0, 0, 0, 0.12), 2px 2px 2px rgba(0, 0, 0, 0.14), 2px 3px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 4px 3px rgba(0, 0, 0, 0.12), 2px 2px 2px rgba(0, 0, 0, 0.14),
+    2px 3px 2px rgba(0, 0, 0, 0.2);
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
-
 }
 
 img:hover,
@@ -46,7 +46,8 @@ img:focus {
 }
 
 button {
-  box-shadow: 3px 4px 3px rgba(0, 0, 0, 0.12), 2px 2px 2px rgba(0, 0, 0, 0.14), 2px 3px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 4px 3px rgba(0, 0, 0, 0.12), 2px 2px 2px rgba(0, 0, 0, 0.14),
+    2px 3px 2px rgba(0, 0, 0, 0.2);
 }
 
 button:hover,

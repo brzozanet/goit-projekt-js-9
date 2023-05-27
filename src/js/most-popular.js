@@ -171,7 +171,6 @@ export const fetchMostPopular = async () => {
           }
         });
       };
-      
     });
   };
 
