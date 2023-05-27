@@ -31,7 +31,7 @@
   }
 }
 
-.hidden {
+.hiddenColor {
   background-color: rgba(0, 0, 0, 0.2);
   transition: 600ms;
 }
@@ -101,9 +101,9 @@
       gap: 15px;
     }
 
-    .hidden {
-      background-color: transparent;
-    }
+    // .hiddenColor {
+    //   background-color: transparent;
+    // }
 
     .card {
       &__info {
