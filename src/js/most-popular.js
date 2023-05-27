@@ -60,6 +60,7 @@ export const fetchMostPopular = async () => {
       movie.genres = matchedGenres;
       return movie;
     });
+
     popularMovies(movies);
     totalPages = popularMoviesData.total_pages;
 
@@ -86,6 +87,7 @@ export const fetchMostPopular = async () => {
       movie.genres = matchedGenres;
       return movie;
     });
+
     popularMovies(movies);
     if (currentPage === totalPages) {
       showMoreButtonEl.style.display = "none";
@@ -98,19 +100,17 @@ export const fetchMostPopular = async () => {
     movies.forEach(movie => {
       const card = document.createElement("div");
       card.className = "card";
-      card.innerHTML = `<div id="card" class="card" >
-
-        <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${
-        movie.original_title
-      }" title="${movie.original_title}" />
-      </div>
-      <div class="card__content">
-        <div class="card__info">
-          <div class="card__title">${movie.original_title}</div>
-          <div class="card__genre">${movie.genres.join(", ")} |</div>
-          <div class="card__release">${movie.release_date.slice(0, 4)}</div>
+      card.innerHTML = `
+        <div id="card" class="card" >
+          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}" />
         </div>
-      </div>`;
+        <div class="card__content">
+          <div class="card__info">
+            <div class="card__title">${movie.original_title}</div>
+            <div class="card__genre">${movie.genres.join(", ")} |</div>
+            <div class="card__release">${movie.release_date.slice(0, 4)}</div>
+          </div>
+        </div>`;
       // const modalEL = document.getElementById("modalBox");
 
       const moviesContainerEl = document.querySelector("#gallery");
@@ -153,17 +153,20 @@ export const fetchMostPopular = async () => {
           popupEl.classList.add("is-hidden");
           moviesContainerEl.classList.remove("hidden");
         });
+
         window.addEventListener("keyup", e => {
           if (e.key === "Escape") {
             popupEl.classList.add("is-hidden");
           }
         });
+
         window.addEventListener("keyup", e => {
           if (e.key === "Escape") {
             popupEl.classList.add("is-hidden");
             moviesContainerEl.classList.remove("hidden");
           }
         });
+        
         window.addEventListener("click", e => {
           if (e.target.classList.contains("backdrop")) {
             popupEl.classList.add("is-hidden");
@@ -178,4 +181,4 @@ export const fetchMostPopular = async () => {
   await matchGenres();
 };
 
-fetchMostPopular();
+// fetchMostPopular();

@@ -26,37 +26,30 @@ function showMovies(movies) {
   moviesContainerEl.innerHTML = "";
 
   movies.forEach(movie => {
-    const { original_title, poster_path, vote_average, release_date, genres } =
-      movie;
+    const { original_title, poster_path, vote_average, release_date, genres } = movie;
 
     const movieEl = document.createElement("div");
     movieEl.classList.add("card");
 
     movieEl.innerHTML = `
-    <div id="card" class="card">
-             <img class="card__poster" src="${IMG_URL}${
-      movie.poster_path
-    }" alt="${movie.original_title}" title="${movie.original_title}" />
-           <div class="card__content">
-                <div class="card__info">
-                  <div class="card__title">${movie.original_title}</div>
-                  <div class="card__genre">${movie.genres} |</div>
-                  <div class="card__release">${movie.release_date.slice(
-                    0,
-                    4
-                  )} |</div>
-                  <div class="card__rating">Rating: ${movie.vote_average}</div>
-                </div>
-              </div>
-            </div>
-          `;
+      <div id="card" class="card">
+        <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}" />
+        <div class="card__content">
+          <div class="card__info">
+            <div class="card__title">${movie.original_title}</div>
+            <div class="card__genre">${movie.genres} |</div>
+            <div class="card__release">${movie.release_date.slice(0, 4)} |</div>
+            <div class="card__rating">Rating: ${movie.vote_average}</div>
+          </div>
+        </div>
+      </div>`;
 
     moviesContainerEl.appendChild(movieEl);
   });
 }
 
-form.addEventListener("submit", e => {
-  e.preventDefault();
+form.addEventListener("submit", event => {
+  event.preventDefault();
 
   const searchTerm = search.value;
 
