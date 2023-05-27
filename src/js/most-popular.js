@@ -62,9 +62,9 @@ export const fetchMostPopular = async () => {
     });
 
     popularMovies(movies);
-    let totalPages = popularMoviesData.total_pages;
+    totalPages = popularMoviesData.total_pages;
     if (currentPage < totalPages) {
-      showMoreButtonEl.style.display = "hidden";
+      showMoreButtonEl.style.display = "block";
     } else {
       showMoreButtonEl.style.display = "hidden";
     }
