@@ -73,6 +73,7 @@ export const fetchMostPopular = async () => {
 
   const showMoreMovies = async () => {
     currentPage++;
+    const genres = await fetchGenres();    
     const popularMoviesData = await fetchPopularData(currentPage);
     const movies = popularMoviesData.results.map(movie => {
       const movieGenresIds = movie.genre_ids;
