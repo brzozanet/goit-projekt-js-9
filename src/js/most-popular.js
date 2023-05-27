@@ -3,7 +3,7 @@ import { showSpinner, hideSpinner } from "./loading-spinner";
 
 export const fetchMostPopular = async () => {
   let currentPage = 1;
-  const moviesPerPage = 20;
+  // const moviesPerPage = 20;
   let totalPages = 0;
   const options = {
     method: "GET",
@@ -13,7 +13,7 @@ export const fetchMostPopular = async () => {
     },
   };
 
-  const moviesContainerEl = document.querySelector("#gallery");
+  // const moviesContainerEl = document.querySelector("#gallery");
   const showMoreButtonEl = document.querySelector(".show-more");
 
   const fetchPopularData = async page => {
@@ -111,7 +111,7 @@ export const fetchMostPopular = async () => {
           <div class="card__release">${movie.release_date.slice(0, 4)}</div>
         </div>
       </div>`;
-      const modalEL = document.getElementById("modalBox");
+      // const modalEL = document.getElementById("modalBox");
 
       const moviesContainerEl = document.querySelector("#gallery");
 
@@ -174,7 +174,7 @@ export const fetchMostPopular = async () => {
     });
   };
 
-  const genres = await fetchGenres();
+  // const genres = await fetchGenres();
   await matchGenres();
 };
 
