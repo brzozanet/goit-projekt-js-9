@@ -1,39 +1,79 @@
-const save = (key, value) => {
-  try {
-    const serializedState = JSON.stringify(value);
-    localStorage.setItem(key, serializedState);
-  } catch (error) {
-    console.error("Set state error: ", error.message);
+export class UserMovies {
+  #watched = [];
+  #queued = [];
+
+  constructor() {
+    const watched = JSON.parse(localStorage.getItem("watched-movies"));
+    const queued = JSON.parse(localStorage.getItem("queued-movies"));
+
+    if (watched) {
+      this.#watched = watched;
+    } else {
+      this.#watched = [];
+    }
+
+    if (queued) {
+      this.#queued = queued;
+    } else {
+      this.#queued = [];
+    }
   }
-};
 
-const load = key => {
-  try {
-    const serializedState = JSON.stringify(key);
-    return serializedState === null ? undefined : JSON.parse(serializedState);
-  } catch (error) {
-    console.error("Get state error: ", error.message);
+  get watched() {
+    return this.#watched;
   }
-};
 
-const keysName = {
-  WATCHED: "watched",
-  QUEUE: "queue",
-};
-
-const updateArray = event => {
-  const watchedArray = load(keyName.WATCHED) || [];
-  const queueArray = load(keyName.QUEUE) || [];
-
-  if (event.target.innerText === "Add to watched") {
-    saveToLocalStorage(watchedArray, keysName.WATCHED, "WATCHED", event);
-  } else if (event.target === "Add to queue") {
-    saveToLocalStorage(queueArray, keysName.QUEUE, "QUEUE", event);
+  get queued() {
+    return this.#queued;
   }
-};
 
-function saveToLocalStorage(key, array, event, keyIndex) {
-  array.push(state.activeFilm);
-  save(key, array);
-  event.target.innerText = `Add to ${keyIndex}`;
+  isAdded(element, array) {
+    for (let i = 0; i < array.length; i++) {
+      if (+array[i].id === +element.id) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  addToWatch(element) {
+    if (this.isAdded(element, this.#watched)) {
+      this.#watched.push(element);
+      localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
+    }
+  }
+
+  addToQueue(element) {
+    if (this.isAdded(element, this.#queued)) {
+      this.#queued.push(element);
+      localStorage.setItem("queued-movies", JSON.stringify(this.#queued));
+    }
+  }
+
+  // removeFromWatch(element) {
+  //   if (!this.isAdded(element, this.#watched)) {
+  //     const index = this.#watched.findIndex(movie => movie.id === element.id);
+  //     if (index !== -1) {
+  //       this.#watched.splice(index, 1);
+  //       localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
+  //     }
+  //   }
+  // }
+
+  // removeFromWatch(element) {
+  //   const index = this.#watched.findIndex(movie => movie.id === element.id);
+  //   if (index !== -1) {
+  //     this.#watched.splice(index, 1);
+  //     localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
+  //   }
+  // }
+
+  // removeFromWatch(element) {
+  //   const updatedWatched = this.#watched.filter(
+  //     movie => movie.id !== element.id
+  //   );
+  //   this.#watched = updatedWatched;
+  //   localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
+  // }
+
 }
