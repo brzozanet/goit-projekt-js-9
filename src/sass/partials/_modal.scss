@@ -7,6 +7,7 @@
   transform: translate(0%, 0%);
   transition: 600ms;
 }
+
 .is-hidden {
   opacity: 0;
   visibility: hidden;
@@ -14,6 +15,7 @@
   transform: translate(0%, -100%);
   transition: 700ms ease-in-out;
 }
+
 .modal {
   position: absolute;
   box-sizing: border-box;
@@ -29,19 +31,23 @@
   padding: 48px 20px 20px;
   overflow: hidden visible;
   transition: 1000ms;
+
   &__photo {
     margin-bottom: 20px;
   }
+
   &__item {
     display: flex;
     flex-direction: column;
   }
+
   &__btn {
     display: flex;
     justify-content: center;
     gap: 20px;
     margin-bottom: 40px;
   }
+
   &__btn-close {
     cursor: pointer;
     position: absolute;
@@ -55,10 +61,12 @@
     filter: drop-shadow(2px 4px 2px rgba(0, 0, 0, 0.5));
     box-shadow: none;
   }
+
   &__btn-close:hover,
   &__btn-close:focus {
     box-shadow: none;
   }
+
   @keyframes pulseBtn {
     0% {
       transform: rotate(0deg);
@@ -85,21 +93,25 @@
       filter: drop-shadow(3px 6px 2px rgba(0, 0, 0, 0.5));
     }
   }
+
   &__info {
     display: flex;
     flex-direction: column;
     gap: 20px;
     margin-bottom: 20px;
   }
+
   &__title {
     text-shadow: 3px 4px 3px rgba(0, 0, 0, 0.12),
       2px 2px 2px rgba(0, 0, 0, 0.14), 2px 3px 2px rgba(0, 0, 0, 0.2);
     text-transform: uppercase;
   }
+
   &__stats-list {
     display: flex;
     padding-bottom: 8px;
   }
+
   &__stats-info {
     width: 100px;
     font-size: 12px;
@@ -107,12 +119,14 @@
     color: $modalBgColor;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
   }
+
   &__stats-result {
     width: 115px;
     font-size: 12px;
     line-height: 1.33;
     color: $IIColor;
   }
+
   &__stats-vote {
     background-color: $IImodalColor;
     color: $IColor;
@@ -121,16 +135,19 @@
     font-size: 12px;
     line-height: 1.33;
   }
+
   &__stats-votes {
     font-size: 12px;
     line-height: 1.33;
     color: $IIColor;
   }
+
   &__about {
     display: flex;
     flex-direction: column;
     gap: 8px;
   }
+
   &__about-header {
     text-transform: uppercase;
     font-size: 12px;
@@ -139,14 +156,17 @@
     text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.12),
       2px 2px 2px rgba(0, 0, 0, 0.14), 1px 1px 1px rgba(0, 0, 0, 0.2);
   }
+
   &__about-text {
     font-size: 12px;
     line-height: 1.66;
   }
+
   &__info-buttons {
     display: flex;
     gap: 20px;
   }
+
   &__button {
     width: 110px;
     height: 44px;
@@ -162,6 +182,7 @@
     padding: 3px 5px 0;
     transition: 1000ms;
   }
+
   &__button:hover,
   &__button:focus,
   &__button.button-active {
@@ -174,24 +195,29 @@
       9px 9px 20px 2px rgba(0, 0, 0, 0.4);
   }
 }
+
 @media screen and (min-width: 768px) {
   .modal {
     width: 704px;
     height: auto;
     overflow: hidden;
+
     &__item {
       display: flex;
       flex-direction: row;
       gap: 68px;
     }
+
     &__photo {
       width: 264px;
       padding-right: 0;
     }
+
     &__button {
       width: 125px;
     }
   }
+
   @media screen and (min-width: 1200px) {
     .backdrop {
       background-color: rgba(0, 0, 0, 0);
