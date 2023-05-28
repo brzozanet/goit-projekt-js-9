@@ -60,11 +60,19 @@ export class UserMovies {
   //   }
   // }
 
+  // removeFromWatch(element) {
+  //   const index = this.#watched.findIndex(movie => movie.id === element.id);
+  //   if (index !== -1) {
+  //     this.#watched.splice(index, 1);
+  //     localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
+  //   }
+  // }
+
   removeFromWatch(element) {
-    const index = this.#watched.findIndex(movie => movie.id === element.id);
-    if (index !== -1) {
-      this.#watched.splice(index, 1);
-      localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
-    }
+    const updatedWatched = this.#watched.filter(
+      movie => movie.id !== element.id
+    );
+    this.#watched = updatedWatched;
+    localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
   }
 }
