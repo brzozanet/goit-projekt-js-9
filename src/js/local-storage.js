@@ -68,11 +68,12 @@ export class UserMovies {
   //   }
   // }
 
-  removeFromWatch(element) {
-    const updatedWatched = this.#watched.filter(
-      movie => movie.id !== element.id
-    );
-    this.#watched = updatedWatched;
-    localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
-  }
+  // removeFromWatch(element) {
+  //   const updatedWatched = this.#watched.filter(
+  //     movie => movie.id !== element.id
+  //   );
+  //   this.#watched = updatedWatched;
+  //   localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
+  // }
+
 }

@@ -160,10 +160,10 @@ export const fetchMostPopular = async () => {
           userMovies.addToQueue(movie)
         );
 
-        const removeWatchBtnEl = document.querySelector("#modal__button-unwatched");
-        removeWatchBtnEl.addEventListener("click", () =>
-          userMovies.removeFromWatch(movie)
-        );
+        // const removeWatchBtnEl = document.querySelector("#modal__button-unwatched");
+        // removeWatchBtnEl.addEventListener("click", () =>
+        //   userMovies.removeFromWatch(movie)
+        // );
 
         // hide Modal
 
