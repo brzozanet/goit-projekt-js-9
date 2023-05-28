@@ -34,11 +34,13 @@ function showMovies(movies) {
 
     movieEl.innerHTML = `
       <div id="card" class="card">
-        <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}" />
+        <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${
+      movie.original_title
+    }" title="${movie.original_title}" />
         <div class="card__content">
           <div class="card__info">
             <div class="card__title">${movie.original_title}</div>
-            <div class="card__genre">${movie.genre_ids} |</div>
+            <div class="card__genre">${movie.genres} |</div>
             <div class="card__release">${movie.release_date.slice(0, 4)} |</div>
             <div class="card__rating">Rating: ${movie.vote_average}</div>
           </div>

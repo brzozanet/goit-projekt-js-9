@@ -34,14 +34,16 @@
     display: flex;
     justify-content: center;
     padding-top: 54px;
+    background-color: transparent;
   }
 
   &__search-border {
     width: 280px;
-    border-bottom: 0.5px solid $IColor;
+    border-bottom: 0 0 0 20px solid white;
     font-weight: 400;
     font-size: 14px;
     line-height: 1.14;
+    background-color: transparent;
   }
 }
 
