@@ -6,7 +6,6 @@ export const userMovies = new UserMovies();
 
 export const fetchMostPopular = async () => {
   let currentPage = 1;
-  // const moviesPerPage = 20;
   let totalPages = 0;
   const options = {
     method: "GET",
@@ -15,9 +14,6 @@ export const fetchMostPopular = async () => {
       Authorization: `Bearer ${API_KEY}`,
     },
   };
-
-  // const moviesContainerEl = document.querySelector("#gallery");
-  const showMoreButtonEl = document.querySelector(".show-more");
 
   const fetchPopularData = async page => {
     try {
@@ -66,37 +62,43 @@ export const fetchMostPopular = async () => {
 
     popularMovies(movies);
     totalPages = popularMoviesData.total_pages;
+
     if (currentPage < totalPages) {
-      showMoreButtonEl.style.display = "block";
-    } else {
-      showMoreButtonEl.style.display = "hidden";
+      window.addEventListener("scroll", handleScroll);
     }
   };
 
-  const showMoreMovies = async () => {
-    currentPage++;
-    const genres = await fetchGenres();
-    const popularMoviesData = await fetchPopularData(currentPage);
-    const movies = popularMoviesData.results.map(movie => {
-      const movieGenresIds = movie.genre_ids;
-      const matchedGenres = [];
-      for (let i = 0; i < movieGenresIds.length; i++) {
-        for (let j = 0; j < genres.length; j++) {
-          if (movieGenresIds[i] === genres[j].id) {
-            matchedGenres.push(genres[j].name);
+  const handleScroll = async () => {
+    const {
+      scrollTop,
+      clientHeight,
+      scrollHeight
+    } = document.documentElement;
+    
+    if (scrollTop + clientHeight >= scrollHeight - 10) {
+      window.removeEventListener("scroll", handleScroll);
+      currentPage++;
+      const genres = await fetchGenres();
+      const popularMoviesData = await fetchPopularData(currentPage);
+      const movies = popularMoviesData.results.map(movie => {
+        const movieGenresIds = movie.genre_ids;
+        const matchedGenres = [];
+        for (let i = 0; i < movieGenresIds.length; i++) {
+          for (let j = 0; j < genres.length; j++) {
+            if (movieGenresIds[i] === genres[j].id) {
+              matchedGenres.push(genres[j].name);
+            }
           }
         }
+        movie.genres = matchedGenres;
+        return movie;
+      });
+      popularMovies(movies);
+      if (currentPage < totalPages) {
+        window.addEventListener("scroll", handleScroll);
       }
-      movie.genres = matchedGenres;
-      return movie;
-    });
-    popularMovies(movies);
-    if (currentPage === totalPages) {
-      showMoreButtonEl.style.display = "hidden";
     }
   };
-
-  showMoreButtonEl.addEventListener("click", showMoreMovies);
 
   const popularMovies = movies => {
     movies.forEach(movie => {
@@ -115,7 +117,6 @@ export const fetchMostPopular = async () => {
             <div class="card__release">${movie.release_date.slice(0, 4)}</div>
           </div>
         </div>`;
-      // const modalEL = document.getElementById("modalBox");
 
       const moviesContainerEl = document.querySelector("#gallery");
 
@@ -199,4 +200,4 @@ export const fetchMostPopular = async () => {
   await matchGenres();
 };
 
-// fetchMostPopular();
+fetchMostPopular();
