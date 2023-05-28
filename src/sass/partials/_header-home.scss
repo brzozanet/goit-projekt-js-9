@@ -71,8 +71,8 @@
     background-image: url(../images/backgroundHome-T@1x.png);
 
     &__wrapper {
-      padding-left: 31px;
-      padding-right: 33px;
+      padding-left: 32px;
+      padding-right: 32px;
     }
 
     &__title {
@@ -87,13 +87,8 @@
       padding-top: 40px;
     }
 
-    &__buttons {
-      gap: 32px;
-      padding: 0;
-
-      &-item {
-        width: 152px;
-      }
+    &__search-border {
+      width: 336px;
     }
   }
 }
@@ -119,20 +114,16 @@
       padding-top: 41px;
     }
 
+    &__search-border {
+      width: 394px;
+    }
+
     &__title {
       padding-left: 10px;
     }
 
     &__navigation--list {
       padding-left: 898px;
-    }
-
-    &__buttons {
-      gap: 16px;
-
-      &-item {
-        width: 148px;
-      }
     }
   }
 }
