@@ -71,3 +71,18 @@ if (queuedMovies && Array.isArray(queuedMovies)) {
     </p>`;
   queuedMoviesContainerEl.appendChild(noQueuedMovies);
 }
+
+const watchedBtnEl = document.querySelector("#button-watched");
+const queueBtnEl = document.querySelector("#button-queue");
+const watchedDivEl = document.querySelector("#library-watched");
+const queuedDivEl = document.querySelector("#library-queued");
+
+watchedBtnEl.addEventListener("click", () => {
+  watchedDivEl.style.display = "block";
+  queuedDivEl.style.display = "none";
+});
+
+queueBtnEl.addEventListener("click", () => {
+  watchedDivEl.style.display = "none";
+  queuedDivEl.style.display = "block";
+});
