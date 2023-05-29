@@ -1,8 +1,9 @@
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { showSpinner, hideSpinner } from "./loading-spinner";
-import { UserMovies } from "./local-storage";
+import { UserMoviesWatched, UserMoviesQueued } from "./local-storage";
 
-export const userMovies = new UserMovies();
+const userMoviesWatched = new UserMoviesWatched();
+const userMoviesQueued = new UserMoviesQueued();
 
 export const fetchMostPopular = async () => {
   let currentPage = 1;
@@ -153,17 +154,13 @@ export const fetchMostPopular = async () => {
 
         const addWatchBtnEl = document.querySelector("#modal__button-watched");
         const addQueueBtnEl = document.querySelector("#modal__button-queue");
+        
         addWatchBtnEl.addEventListener("click", () =>
-          userMovies.addToWatch(movie)
+          userMoviesWatched.addToWatch(movie)
         );
         addQueueBtnEl.addEventListener("click", () =>
-          userMovies.addToQueue(movie)
+          userMoviesQueued.addToQueue(movie)
         );
-
-        // const removeWatchBtnEl = document.querySelector("#modal__button-unwatched");
-        // removeWatchBtnEl.addEventListener("click", () =>
-        //   userMovies.removeFromWatch(movie)
-        // );
 
         // hide Modal
 
