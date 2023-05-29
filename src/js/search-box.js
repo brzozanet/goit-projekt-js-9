@@ -19,10 +19,16 @@ const moviesContainerEl = document.querySelector(".movies-container");
 getMovies(API_URL);
 
 async function getMovies(url) {
-  const res = await fetch(url);
-  const data = await res.json();
-
-  showMovies(data.results);
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await res.json();
+    showMovies(data.results);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function showMovies(movies) {
@@ -44,7 +50,21 @@ function showMovies(movies) {
       .map(genreId => genres.find(genre => genre.id === genreId).name)
       .join(", ");
 
-    movieEl.innerHTML = `
+    if (!poster_path) {
+      movieEl.innerHTML = `
+      <div id="card" class="card">
+        <img class="card__poster" src="src/images/not-found.jpg" alt="${original_title}" title="${original_title}" />
+        <div class="card__content">
+          <div class="card__info">
+            <div class="card__title">${original_title}</div>
+            <div class="card__genre">${movieGenres} |</div>
+            <div class="card__release">${release_date.slice(0, 4)} </div>
+            
+          </div>
+        </div>
+      </div>`;
+    } else {
+      movieEl.innerHTML = `
       <div id="card" class="card">
         <img class="card__poster" src="${IMG_URL}${poster_path}" alt="${original_title}" title="${original_title}" />
         <div class="card__content">
@@ -56,7 +76,7 @@ function showMovies(movies) {
           </div>
         </div>
       </div>`;
-
+    }
     moviesContainerEl.appendChild(movieEl);
 
     // ================================ SHOW MODAL ================================
@@ -125,7 +145,7 @@ function showMovies(movies) {
   });
 }
 
-search.addEventListener("input", () => {
+form.addEventListener("input", () => {
   const searchTerm = search.value;
 
   if (searchTerm && searchTerm !== "") {
