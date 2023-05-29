@@ -19,9 +19,16 @@ const moviesContainerEl = document.querySelector(".movies-container");
 getMovies(API_URL);
 
 async function getMovies(url) {
-  const res = await fetch(url);
-  const data = await res.json();
-  showMovies(data.results);
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await res.json();
+    showMovies(data.results);
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function showMovies(movies) {
@@ -138,7 +145,7 @@ function showMovies(movies) {
   });
 }
 
-search.addEventListener("input", () => {
+form.addEventListener("input", () => {
   const searchTerm = search.value;
 
   if (searchTerm && searchTerm !== "") {
