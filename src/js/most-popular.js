@@ -63,16 +63,16 @@ export const fetchMostPopular = async () => {
 
     popularMovies(movies);
     totalPages = popularMoviesData.total_pages;
-
     if (currentPage < totalPages) {
       showMoreButtonEl.style.display = "block";
     } else {
-      showMoreButtonEl.style.display = "none";
+      showMoreButtonEl.style.display = "hidden";
     }
   };
 
   const showMoreMovies = async () => {
     currentPage++;
+    const genres = await fetchGenres();
     const popularMoviesData = await fetchPopularData(currentPage);
     const movies = popularMoviesData.results.map(movie => {
       const movieGenresIds = movie.genre_ids;
@@ -87,10 +87,9 @@ export const fetchMostPopular = async () => {
       movie.genres = matchedGenres;
       return movie;
     });
-
     popularMovies(movies);
     if (currentPage === totalPages) {
-      showMoreButtonEl.style.display = "none";
+      showMoreButtonEl.style.display = "hidden";
     }
   };
 
@@ -102,7 +101,9 @@ export const fetchMostPopular = async () => {
       card.className = "card";
       card.innerHTML = `
         <div id="card" class="card" >
-          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}" />
+          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${
+        movie.original_title
+      }" title="${movie.original_title}" />
         </div>
         <div class="card__content">
           <div class="card__info">
@@ -116,7 +117,7 @@ export const fetchMostPopular = async () => {
       const moviesContainerEl = document.querySelector("#gallery");
 
       moviesContainerEl.appendChild(card);
-      moviesContainerEl.classList.remove("hidden");
+      moviesContainerEl.classList.remove("hiddenColor");
 
       // show Modal
 
@@ -137,7 +138,7 @@ export const fetchMostPopular = async () => {
         const aboutEl = document.querySelector(".modal__about-text");
 
         popupEl.classList.remove("is-hidden");
-        moviesContainerEl.classList.add("hidden");
+        moviesContainerEl.classList.add("hiddenColor");
         imageEl.src = `${IMG_URL}${movie.poster_path}`;
         titleEl.innerHTML = `${movie.original_title}`;
         voteEl.innerHTML = `${movie.vote_average}`;
@@ -151,7 +152,7 @@ export const fetchMostPopular = async () => {
 
         closeBtnEl.addEventListener("click", () => {
           popupEl.classList.add("is-hidden");
-          moviesContainerEl.classList.remove("hidden");
+          moviesContainerEl.classList.remove("hiddenColor");
         });
 
         window.addEventListener("keyup", e => {
@@ -163,14 +164,14 @@ export const fetchMostPopular = async () => {
         window.addEventListener("keyup", e => {
           if (e.key === "Escape") {
             popupEl.classList.add("is-hidden");
-            moviesContainerEl.classList.remove("hidden");
+            moviesContainerEl.classList.remove("hiddenColor");
           }
         });
-        
+
         window.addEventListener("click", e => {
           if (e.target.classList.contains("backdrop")) {
             popupEl.classList.add("is-hidden");
-            moviesContainerEl.classList.remove("hidden");
+            moviesContainerEl.classList.remove("hiddenColor");
           }
         });
       };
