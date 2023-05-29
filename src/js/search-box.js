@@ -10,8 +10,8 @@ const API_URL = fetch(`${URL}/discover/movie?include_adult=false&include_video=f
   .then(response => response.json())
   .catch(error => console.error(error));
 
-const form = document.getElementById("form");
-const search = document.getElementById("search");
+const form = document.querySelector("#form");
+const search = document.querySelector("#search");
 const moviesContainerEl = document.querySelector(".movies-container");
 
 getMovies(API_URL);
