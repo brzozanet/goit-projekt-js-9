@@ -1,15 +1,14 @@
 import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
+import { UserMovies } from "./local-storage";
 import { genres } from "./genres";
 
+const userMovies = new UserMovies();
+
 const SEARCH_API = `${URL}/search/movie?api_key=${API_KEY}&query=`;
-const API_URL = fetch(
-  // `${URL}/discover/movie?include_adult=false&include_video=false&language=${LANGUAGE}&page=1&sort_by=popularity.desc`
-  `${URL}/discover/movie?include_adult=false&include_video=false&language=${LANGUAGE}&page=1&sort_by=popularity.desc&api_key=${API_KEY}`
-)
+const API_URL = fetch(`${URL}/discover/movie?include_adult=false&include_video=false&language=${LANGUAGE}&page=1&sort_by=popularity.desc&api_key=${API_KEY}`)
   .then(response => response.json())
-  .then(response => console.log(response))
-  .catch(err => console.error(err));
+  .catch(error => console.error(error));
 
 const form = document.getElementById("form");
 const search = document.getElementById("search");
@@ -58,7 +57,7 @@ function showMovies(movies) {
 
     moviesContainerEl.appendChild(movieEl);
 
-    // show Moda
+    // ================================ SHOW MODAL ================================
 
     movieEl.addEventListener("click", () => {
       modalBoxShow(movie);
@@ -85,6 +84,19 @@ function showMovies(movies) {
       originalTitleEl.innerHTML = `${movie.original_title}`;
       genreEl.innerHTML = `${movieGenres}`;
       aboutEl.innerHTML = `${movie.overview}`;
+
+      const addWatchBtnEl = document.querySelector("#modal__button-watched");
+      const addQueueBtnEl = document.querySelector("#modal__button-queue");
+
+      addWatchBtnEl.addEventListener("click", () =>
+        userMovies.addToWatch(movie)
+      );
+
+      addQueueBtnEl.addEventListener("click", () =>
+        userMovies.addToQueue(movie)
+      );
+
+      // ================================ HIDE MODAL ================================
 
       closeBtnEl.addEventListener("click", () => {
         popupEl.classList.add("is-hidden");
