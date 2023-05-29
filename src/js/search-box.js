@@ -58,7 +58,7 @@ function showMovies(movies) {
 
     moviesContainerEl.appendChild(movieEl);
 
-    card.addEventListener("click", () => {
+    movieEl.addEventListener("click", () => {
       modalBoxShow(movie);
     });
 
