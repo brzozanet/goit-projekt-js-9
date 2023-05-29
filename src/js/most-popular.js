@@ -2,7 +2,7 @@ import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { showSpinner, hideSpinner } from "./loading-spinner";
 import { UserMovies } from "./local-storage";
 
-export const userMovies = new UserMovies();
+const userMovies = new UserMovies();
 
 export const fetchMostPopular = async () => {
   let currentPage = 1;
@@ -121,7 +121,6 @@ export const fetchMostPopular = async () => {
       const moviesContainerEl = document.querySelector("#gallery");
 
       moviesContainerEl.appendChild(card);
-      moviesContainerEl.classList.remove("hiddenColor");
 
       // show Modal
 
@@ -142,7 +141,6 @@ export const fetchMostPopular = async () => {
         const aboutEl = document.querySelector(".modal__about-text");
 
         popupEl.classList.remove("is-hidden");
-        moviesContainerEl.classList.add("hiddenColor");
         imageEl.src = `${IMG_URL}${movie.poster_path}`;
         titleEl.innerHTML = `${movie.original_title}`;
         voteEl.innerHTML = `${movie.vote_average}`;
@@ -154,23 +152,19 @@ export const fetchMostPopular = async () => {
 
         const addWatchBtnEl = document.querySelector("#modal__button-watched");
         const addQueueBtnEl = document.querySelector("#modal__button-queue");
+
         addWatchBtnEl.addEventListener("click", () =>
           userMovies.addToWatch(movie)
         );
+        
         addQueueBtnEl.addEventListener("click", () =>
           userMovies.addToQueue(movie)
         );
-
-        // const removeWatchBtnEl = document.querySelector("#modal__button-unwatched");
-        // removeWatchBtnEl.addEventListener("click", () =>
-        //   userMovies.removeFromWatch(movie)
-        // );
 
         // hide Modal
 
         closeBtnEl.addEventListener("click", () => {
           popupEl.classList.add("is-hidden");
-          moviesContainerEl.classList.remove("hiddenColor");
         });
 
         window.addEventListener("keyup", e => {
@@ -182,14 +176,12 @@ export const fetchMostPopular = async () => {
         window.addEventListener("keyup", e => {
           if (e.key === "Escape") {
             popupEl.classList.add("is-hidden");
-            moviesContainerEl.classList.remove("hiddenColor");
           }
         });
 
         window.addEventListener("click", e => {
           if (e.target.classList.contains("backdrop")) {
             popupEl.classList.add("is-hidden");
-            moviesContainerEl.classList.remove("hiddenColor");
           }
         });
       };
