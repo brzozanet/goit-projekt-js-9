@@ -103,7 +103,9 @@ export const fetchMostPopular = async () => {
       card.className = "card";
       card.innerHTML = `
         <div id="card" class="card" >
-          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}" />
+          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${
+        movie.original_title
+      }" title="${movie.original_title}" />
         </div>
         <div class="card__content">
           <div class="card__info">
