@@ -1,19 +1,31 @@
-export class UserMoviesWatched {
+export class UserMovies {
   #watched = [];
+  #queued = [];
 
-  // constructor() {
-  //   const watched = JSON.parse(localStorage.getItem("watched-movies"));
+  constructor() {
+    const watched = JSON.parse(localStorage.getItem("watched-movies"));
+    const queued = JSON.parse(localStorage.getItem("queued-movies"));
 
-  //   if (watched) {
-  //     this.#watched = watched;
-  //   } else {
-  //     this.#watched = [];
-  //   }
-  // }
+    if (watched) {
+      this.#watched = watched;
+    } else {
+      this.#watched = [];
+    }
 
-  // get watched() {
-  //   return this.#watched;
-  // }
+    if (queued) {
+      this.#queued = queued;
+    } else {
+      this.#queued = [];
+    }
+  }
+
+  get watched() {
+    return this.#watched;
+  }
+
+  get queued() {
+    return this.#queued;
+  }
 
   isAdded(element, array) {
     for (let i = 0; i < array.length; i++) {
@@ -29,33 +41,6 @@ export class UserMoviesWatched {
       this.#watched.push(element);
       localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
     }
-  }
-}
-
-export class UserMoviesQueued {
-  #queued = [];
-
-  // constructor() {
-  //   const queued = JSON.parse(localStorage.getItem("queued-movies"));
-
-  //   if (queued) {
-  //     this.#queued = queued;
-  //   } else {
-  //     this.#queued = [];
-  //   }
-  // }
-
-  // get queued() {
-  //   return this.#queued;
-  // }
-
-  isAdded(element, array) {
-    for (let i = 0; i < array.length; i++) {
-      if (+array[i].id === +element.id) {
-        return false;
-      }
-    }
-    return true;
   }
 
   addToQueue(element) {
