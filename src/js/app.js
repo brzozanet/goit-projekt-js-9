@@ -1,6 +1,6 @@
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { showSpinner, hideSpinner } from "./loading-spinner";
-// import { UserMovies } from "./local-storage";
+import { UserMovies } from "./local-storage";
 import "./search-box";
 
 const userMovies = new UserMovies();
