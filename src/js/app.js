@@ -2,6 +2,7 @@ import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { showSpinner, hideSpinner } from "./loading-spinner";
 import { UserMovies } from "./local-storage";
 import "./search-box";
+import Notiflix from "notiflix";
 
 const userMovies = new UserMovies();
 
@@ -27,7 +28,7 @@ export const fetchMostPopular = async () => {
       hideSpinner();
       return data;
     } catch (error) {
-      console.error(error);
+      Notiflix.Notify.failure("Sorry, server problem. Please try again.");
     }
   };
 
@@ -40,7 +41,7 @@ export const fetchMostPopular = async () => {
       const genreNames = await response.json();
       return genreNames.genres;
     } catch (error) {
-      console.error(error);
+      Notiflix.Notify.failure("Sorry, server problem. Please try again.");
     }
   };
 
