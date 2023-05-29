@@ -58,6 +58,8 @@ function showMovies(movies) {
 
     moviesContainerEl.appendChild(movieEl);
 
+    // show Moda
+
     movieEl.addEventListener("click", () => {
       modalBoxShow(movie);
     });
@@ -75,19 +77,17 @@ function showMovies(movies) {
       const aboutEl = document.querySelector(".modal__about-text");
 
       popupEl.classList.remove("is-hidden");
-      moviesContainerEl.classList.add("hiddenColor");
       imageEl.src = `${IMG_URL}${movie.poster_path}`;
       titleEl.innerHTML = `${movie.original_title}`;
       voteEl.innerHTML = `${movie.vote_average}`;
       votesEl.innerHTML = `${movie.vote_count}`;
       popularityEl.innerHTML = `${movie.popularity}`;
       originalTitleEl.innerHTML = `${movie.original_title}`;
-      genreEl.innerHTML = `${movie.genres.join(", ")}`;
+      genreEl.innerHTML = `${movieGenres}`;
       aboutEl.innerHTML = `${movie.overview}`;
 
       closeBtnEl.addEventListener("click", () => {
         popupEl.classList.add("is-hidden");
-        moviesContainerEl.classList.remove("hiddenColor");
       });
 
       window.addEventListener("keyup", e => {
@@ -99,14 +99,12 @@ function showMovies(movies) {
       window.addEventListener("keyup", e => {
         if (e.key === "Escape") {
           popupEl.classList.add("is-hidden");
-          moviesContainerEl.classList.remove("hiddenColor");
         }
       });
 
       window.addEventListener("click", e => {
         if (e.target.classList.contains("backdrop")) {
           popupEl.classList.add("is-hidden");
-          moviesContainerEl.classList.remove("hiddenColor");
         }
       });
     };
