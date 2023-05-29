@@ -53,8 +53,6 @@
   }
 }
 
-
-
 @for $i from 1 through 20 {
   .card {
     &:nth-child(#{$i}) {
@@ -90,8 +88,6 @@
       width: 336px;
     }
   }
-
-
 
   @media screen and (min-width: 1280px) {
     .wrapper {
