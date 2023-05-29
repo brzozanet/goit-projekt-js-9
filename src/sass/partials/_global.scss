@@ -21,6 +21,18 @@ body {
     */
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: color 600000s 0s, background-color 600000s 0s;
+}
+
+input::placeholder {
+  color: $IColor;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.14;
+}
+
 h1,
 h2,
 h3,
