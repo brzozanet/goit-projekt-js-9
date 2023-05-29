@@ -1,6 +1,6 @@
 import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
-import { genres } from "./genres";
+// import { genres } from "./genres";
 
 const SEARCH_API = `${URL}/search/movie?api_key=${API_KEY}&query=`;
 const API_URL = fetch(
