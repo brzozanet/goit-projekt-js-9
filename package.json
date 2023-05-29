@@ -24,6 +24,7 @@
     "posthtml-include": "^1.7.4"
   },
   "dependencies": {
-    "jquery": "^3.7.0"
+    "jquery": "^3.7.0",
+    "notiflix": "^3.2.6"
   }
 }

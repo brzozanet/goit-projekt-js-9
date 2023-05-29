@@ -187,5 +187,4 @@ export const fetchMostPopular = async () => {
 
   await matchGenres();
 };
-
 fetchMostPopular();
