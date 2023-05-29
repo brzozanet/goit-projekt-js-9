@@ -1,31 +1,19 @@
-export class UserMovies {
+export class UserMoviesWatched {
   #watched = [];
-  #queued = [];
 
-  constructor() {
-    const watched = JSON.parse(localStorage.getItem("watched-movies"));
-    const queued = JSON.parse(localStorage.getItem("queued-movies"));
+  // constructor() {
+  //   const watched = JSON.parse(localStorage.getItem("watched-movies"));
 
-    if (watched) {
-      this.#watched = watched;
-    } else {
-      this.#watched = [];
-    }
+  //   if (watched) {
+  //     this.#watched = watched;
+  //   } else {
+  //     this.#watched = [];
+  //   }
+  // }
 
-    if (queued) {
-      this.#queued = queued;
-    } else {
-      this.#queued = [];
-    }
-  }
-
-  get watched() {
-    return this.#watched;
-  }
-
-  get queued() {
-    return this.#queued;
-  }
+  // get watched() {
+  //   return this.#watched;
+  // }
 
   isAdded(element, array) {
     for (let i = 0; i < array.length; i++) {
@@ -42,6 +30,33 @@ export class UserMovies {
       localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
     }
   }
+}
+
+export class UserMoviesQueued {
+  #queued = [];
+
+  // constructor() {
+  //   const queued = JSON.parse(localStorage.getItem("queued-movies"));
+
+  //   if (queued) {
+  //     this.#queued = queued;
+  //   } else {
+  //     this.#queued = [];
+  //   }
+  // }
+
+  // get queued() {
+  //   return this.#queued;
+  // }
+
+  isAdded(element, array) {
+    for (let i = 0; i < array.length; i++) {
+      if (+array[i].id === +element.id) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   addToQueue(element) {
     if (this.isAdded(element, this.#queued)) {
@@ -49,31 +64,4 @@ export class UserMovies {
       localStorage.setItem("queued-movies", JSON.stringify(this.#queued));
     }
   }
-
-  // removeFromWatch(element) {
-  //   if (!this.isAdded(element, this.#watched)) {
-  //     const index = this.#watched.findIndex(movie => movie.id === element.id);
-  //     if (index !== -1) {
-  //       this.#watched.splice(index, 1);
-  //       localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
-  //     }
-  //   }
-  // }
-
-  // removeFromWatch(element) {
-  //   const index = this.#watched.findIndex(movie => movie.id === element.id);
-  //   if (index !== -1) {
-  //     this.#watched.splice(index, 1);
-  //     localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
-  //   }
-  // }
-
-  // removeFromWatch(element) {
-  //   const updatedWatched = this.#watched.filter(
-  //     movie => movie.id !== element.id
-  //   );
-  //   this.#watched = updatedWatched;
-  //   localStorage.setItem("watched-movies", JSON.stringify(this.#watched));
-  // }
-
 }
