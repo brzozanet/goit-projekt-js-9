@@ -76,13 +76,16 @@ const watchedBtnEl = document.querySelector("#button-watched");
 const queueBtnEl = document.querySelector("#button-queue");
 const watchedDivEl = document.querySelector("#library-watched");
 const queuedDivEl = document.querySelector("#library-queued");
+const libraryInfoEl = document.querySelector("#library-info");
 
 watchedBtnEl.addEventListener("click", () => {
   watchedDivEl.style.display = "block";
   queuedDivEl.style.display = "none";
+  libraryInfoEl.style.display = "none";
 });
 
 queueBtnEl.addEventListener("click", () => {
   watchedDivEl.style.display = "none";
   queuedDivEl.style.display = "block";
+  libraryInfoEl.style.display = "none";
 });
