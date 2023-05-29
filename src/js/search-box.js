@@ -6,7 +6,9 @@ import { genres } from "./genres";
 const userMovies = new UserMovies();
 
 const SEARCH_API = `${URL}/search/movie?api_key=${API_KEY}&query=`;
-const API_URL = fetch(`${URL}/discover/movie?include_adult=false&include_video=false&language=${LANGUAGE}&page=1&sort_by=popularity.desc&api_key=${API_KEY}`)
+const API_URL = fetch(
+  `${URL}/discover/movie?include_adult=false&include_video=false&language=${LANGUAGE}&page=1&sort_by=popularity.desc&api_key=${API_KEY}`
+)
   .then(response => response.json())
   .catch(error => console.error(error));
 
@@ -123,15 +125,12 @@ function showMovies(movies) {
   });
 }
 
-form.addEventListener("submit", event => {
-  event.preventDefault();
-
+search.addEventListener("input", () => {
   const searchTerm = search.value;
 
   if (searchTerm && searchTerm !== "") {
-    getMovies(SEARCH_API + searchTerm);
-
-    search.value = "";
+    const searchUrl = SEARCH_API + searchTerm;
+    getMovies(searchUrl);
   } else {
     window.location.reload();
   }
