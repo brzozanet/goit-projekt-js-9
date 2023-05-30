@@ -33,8 +33,8 @@ if (watchedMovies && Array.isArray(watchedMovies)) {
 } else {
   const noWatchedMovies = document.createElement("div");
   noWatchedMovies.innerHTML = `
-    <p class="no-movies__text">
-        You have no watched movies.
+    <p class="library__title">
+        <strong>You have no watched movies.</strong><br /><a href="index.html">Select first movie</a> and click "Add to watched" button.
     </p>`;
   watchedMoviesContainerEl.appendChild(noWatchedMovies);
 }
@@ -66,8 +66,8 @@ if (queuedMovies && Array.isArray(queuedMovies)) {
 } else {
   const noQueuedMovies = document.createElement("div");
   noQueuedMovies.innerHTML = `
-    <p class="no-movies__text">
-        You have no queued movies.
+    <p class="library__title">
+        <strong>You have no queued movies.</strong><br /><a href="index.html">Select first movie</a> and click "Add to queue" button.
     </p>`;
   queuedMoviesContainerEl.appendChild(noQueuedMovies);
 }
@@ -76,13 +76,16 @@ const watchedBtnEl = document.querySelector("#button-watched");
 const queueBtnEl = document.querySelector("#button-queue");
 const watchedDivEl = document.querySelector("#library-watched");
 const queuedDivEl = document.querySelector("#library-queued");
+const libraryInfoEl = document.querySelector("#library-info");
 
 watchedBtnEl.addEventListener("click", () => {
   watchedDivEl.style.display = "block";
   queuedDivEl.style.display = "none";
+  libraryInfoEl.style.display = "none";
 });
 
 queueBtnEl.addEventListener("click", () => {
   watchedDivEl.style.display = "none";
   queuedDivEl.style.display = "block";
+  libraryInfoEl.style.display = "none";
 });

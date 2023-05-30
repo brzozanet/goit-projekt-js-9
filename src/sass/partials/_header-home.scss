@@ -7,7 +7,6 @@
   background-size: cover;
   margin: 0 auto;
 
-
   &__wrapper {
     display: flex;
     padding: 40px 20px 0;
@@ -97,7 +96,6 @@
 }
 
 @keyframes moveup {
-
   0%,
   100% {
     transform: translateY(0);
@@ -109,8 +107,8 @@
 }
 
 @media (min-device-pixel-ratio: 2),
-(min-resolution: 192dpi),
-(min-resolution: 2dppx) {
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
   .page-header {
     background-image: url(../images/backgroundHome-M@2x.png);
   }
@@ -149,15 +147,14 @@
     }
 
     &__search-border {
-
       width: 336px;
     }
   }
 }
 
 @media (min-device-pixel-ratio: 2),
-(min-resolution: 192dpi),
-(min-resolution: 2dppx) {
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
   .page-main {
     background-image: url(../images/backgroundHome-T@2x.png);
   }
@@ -187,8 +184,8 @@
 }
 
 @media (min-device-pixel-ratio: 2),
-(min-resolution: 192dpi),
-(min-resolution: 2dppx) {
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
   .page-main {
     background-image: url(../images/backgroundHome-T@2x.png);
   }
