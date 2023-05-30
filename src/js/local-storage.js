@@ -8,14 +8,10 @@ export class UserMovies {
 
     if (watched) {
       this.#watched = watched;
-    } else {
-      this.#watched = [];
     }
 
     if (queued) {
       this.#queued = queued;
-    } else {
-      this.#queued = [];
     }
   }
 
@@ -47,6 +43,20 @@ export class UserMovies {
     if (this.isAdded(element, this.#queued)) {
       this.#queued.push(element);
       localStorage.setItem("queued-movies", JSON.stringify(this.#queued));
+    }
+  }
+
+  displayWatchedMovies() {
+    console.log("Watched Movies:");
+    for (const movie of this.#watched) {
+      console.log(movie.title);
+    }
+  }
+
+  displayQueuedMovies() {
+    console.log("Queued Movies:");
+    for (const movie of this.#queued) {
+      console.log(movie.title);
     }
   }
 }

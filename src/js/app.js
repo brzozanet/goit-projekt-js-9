@@ -5,6 +5,9 @@ import "./search-box";
 
 const userMovies = new UserMovies();
 
+userMovies.displayWatchedMovies();
+userMovies.displayQueuedMovies();
+
 export const fetchMostPopular = async () => {
   let currentPage = 1;
   let totalPages = 0;
