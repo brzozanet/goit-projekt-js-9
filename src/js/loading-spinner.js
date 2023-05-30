@@ -1,6 +1,6 @@
 export const showSpinner = () => {
   const spinnerEl = document.querySelector(".lds-ring");
-  spinnerEl.style.display = "block";
+  spinnerEl.style.display = "flex";
 };
 
 export const hideSpinner = () => {
