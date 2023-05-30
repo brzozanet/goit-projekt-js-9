@@ -16,7 +16,7 @@ export const modalBoxShow = movie => {
   const aboutEl = document.querySelector(".modal__about-text");
 
   popupEl.classList.remove("is-hidden");
-  imageEl.innerHTML = `<img src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" class="modal__photo">`;  
+  imageEl.innerHTML = `<img src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" class="modal__photo">`;
   titleEl.innerHTML = `${movie.original_title}`;
   voteEl.innerHTML = `${movie.vote_average}`;
   votesEl.innerHTML = `${movie.vote_count}`;

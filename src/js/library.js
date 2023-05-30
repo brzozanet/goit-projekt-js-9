@@ -2,6 +2,7 @@ import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { UserMovies } from "./local-storage";
 import { modalBoxShow } from "./modal";
+import Notiflix from "notiflix";
 
 let currentPage = 1;
 let totalPages = 0;
@@ -16,7 +17,9 @@ const fetchPopularData = async page => {
     // hideSpinner();
     return data;
   } catch (error) {
-    console.error(error);
+    Notiflix.Notify.failure(
+      "Sorry, the server is not responding. Please try again later."
+    );
   }
 };
 
@@ -26,7 +29,9 @@ const fetchGenres = async () => {
     const genreNames = await response.json();
     return genreNames.genres;
   } catch (error) {
-    console.error(error);
+    Notiflix.Notify.failure(
+      "Sorry, the server is not responding. Please try again later."
+    );
   }
 };
 
@@ -62,7 +67,9 @@ if (watchedMovies && Array.isArray(watchedMovies)) {
       card.className = "card";
       card.innerHTML = `
           <div id="card" class="card" >
-            <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}" />
+            <img class="card__poster" src="${IMG_URL}${
+        movie.poster_path
+      }" alt="${movie.original_title}" title="${movie.original_title}" />
           </div>
           <div class="card__content">
             <div class="card__info">
@@ -79,7 +86,6 @@ if (watchedMovies && Array.isArray(watchedMovies)) {
     });
   };
   showWatchedMovies(watchedMovies);
-
 } else {
   const noWatchedMovies = document.createElement("div");
   noWatchedMovies.innerHTML = `
@@ -96,7 +102,9 @@ if (queuedMovies && Array.isArray(queuedMovies)) {
       card.className = "card";
       card.innerHTML = `
           <div id="card" class="card" >
-            <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}" />
+            <img class="card__poster" src="${IMG_URL}${
+        movie.poster_path
+      }" alt="${movie.original_title}" title="${movie.original_title}" />
           </div>
           <div class="card__content">
             <div class="card__info">
@@ -113,7 +121,6 @@ if (queuedMovies && Array.isArray(queuedMovies)) {
     });
   };
   showQueuedMovies(queuedMovies);
-  
 } else {
   const noQueuedMovies = document.createElement("div");
   noQueuedMovies.innerHTML = `
