@@ -3,6 +3,53 @@ import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { UserMovies } from "./local-storage";
 import { modalBoxShow } from "./modal";
 
+let currentPage = 1;
+let totalPages = 0;
+const fetchPopularData = async page => {
+    try {
+      // showSpinner();
+      const response = await fetch(
+        `${URL}movie/popular?language=${LANGUAGE}&page=${page}&api_key=${API_KEY}`
+      );
+      const data = await response.json();
+      // hideSpinner();
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+};
+  
+const fetchGenres = async () => {
+    try {
+      const response = await fetch(
+        `${URL}genre/movie/list?api_key=${API_KEY}`
+      );
+      const genreNames = await response.json();
+      return genreNames.genres;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  const matchGenres = async () => {
+    const genres = await fetchGenres();
+    const popularMoviesData = await fetchPopularData(currentPage);
+    const movies = popularMoviesData.results.map(movie => {
+      const movieGenresIds = movie.genre_ids;
+      const matchedGenres = [];
+      for (let i = 0; i < movieGenresIds.length; i++) {
+        for (let j = 0; j < genres.length; j++) {
+          if (movieGenresIds[i] === genres[j].id) {
+            matchedGenres.push(genres[j].name);
+          }
+        }
+      }
+      movie.genres = matchedGenres;
+      return movie;
+    });
+    return movies;
+  };
+
 let watchedMovies = JSON.parse(localStorage.getItem("watched-movies"));
 let queuedMovies = JSON.parse(localStorage.getItem("queued-movies"));
 
