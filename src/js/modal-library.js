@@ -16,14 +16,7 @@ export const modalBoxShow = movie => {
   const aboutEl = document.querySelector(".modal__about-text");
 
   popupEl.classList.remove("is-hidden");
-
-  const posterSrc = movie.poster_path
-    ? `${IMG_URL}${movie.poster_path}`
-    : "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png";
-  const posterAlt = movie.poster_path
-    ? movie.original_title
-    : "Poster Not Found";
-  imageEl.innerHTML = `<img class="posters__img" src="${posterSrc}" alt="${posterAlt}"/>`;
+  imageEl.innerHTML = `<img src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" class="modal__photo">`;  
   titleEl.innerHTML = `${movie.original_title}`;
   voteEl.innerHTML = `${movie.vote_average}`;
   votesEl.innerHTML = `${movie.vote_count}`;
@@ -35,13 +28,13 @@ export const modalBoxShow = movie => {
   const addWatchBtnEl = document.querySelector("#modal__button-watched");
   const addQueueBtnEl = document.querySelector("#modal__button-queue");
 
-  addWatchBtnEl.addEventListener("click", () => userMovies.addToWatch(movie));
-  addQueueBtnEl.addEventListener("click", () => userMovies.addToQueue(movie));
+    addWatchBtnEl.classList.add("is-hidden");
+    addQueueBtnEl.classList.add("is-hidden");
+//   addWatchBtnEl.addEventListener("click", () => userMovies.addToWatch(movie));
+//   addQueueBtnEl.addEventListener("click", () => userMovies.addToQueue(movie));
 
   closeBtnEl.addEventListener("click", () => {
     popupEl.classList.add("is-hidden");
-    const iframe = document.getElementById("modal__trailer-video");
-    iframe.src = "";
   });
 
   window.addEventListener("keyup", event => {
