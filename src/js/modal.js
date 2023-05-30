@@ -1,5 +1,6 @@
 import { IMG_URL } from "./setup";
-import { userMovies } from "./app";
+import { UserMovies } from "./local-storage";
+const userMovies = new UserMovies();
 export const modalBoxShow = movie => {
         const popupEl = document.querySelector(".backdrop");
         const closeBtnEl = document.querySelector(".modal__btn-close");

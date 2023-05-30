@@ -7,7 +7,7 @@ import "./search-box";
 
 
 const userMovies = new UserMovies();
-export { userMovies };
+
   
 export const fetchMostPopular = async () => {
   let currentPage = 1;
@@ -120,7 +120,8 @@ export const fetchMostPopular = async () => {
         </div>`;
 
       const moviesContainerEl = document.querySelector("#gallery");
-
+      if (!moviesContainerEl) return;
+      console.log("tekst")
       moviesContainerEl.appendChild(card);
 
       // ================================ SHOW MODAL ================================

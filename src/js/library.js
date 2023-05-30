@@ -1,6 +1,7 @@
 import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { UserMovies } from "./local-storage";
+import { modalBoxShow } from "./modal";
 
 let watchedMovies = JSON.parse(localStorage.getItem("watched-movies"));
 let queuedMovies = JSON.parse(localStorage.getItem("queued-movies"));
@@ -26,7 +27,9 @@ if (watchedMovies && Array.isArray(watchedMovies)) {
               <div class="card__release">${movie.release_date.slice(0, 4)}</div>
             </div>
           </div>`;
-
+      card.addEventListener("click", () => {
+      modalBoxShow(movie);
+    });
       watchedMoviesContainerEl.appendChild(card);
       watchedMoviesContainerEl.classList.remove("hiddenColor");
     });
@@ -59,7 +62,9 @@ if (queuedMovies && Array.isArray(queuedMovies)) {
               <div class="card__release">${movie.release_date.slice(0, 4)}</div>
             </div>
           </div>`;
-
+      card.addEventListener("click", () => {
+      modalBoxShow(movie);
+    });
       queuedMoviesContainerEl.appendChild(card);
       queuedMoviesContainerEl.classList.remove("hiddenColor");
     });
@@ -81,13 +86,13 @@ const queuedDivEl = document.querySelector("#library-queued");
 const libraryInfoEl = document.querySelector("#library-info");
 
 watchedBtnEl.addEventListener("click", () => {
-  watchedDivEl.style.display = "block";
-  queuedDivEl.style.display = "none";
-  libraryInfoEl.style.display = "none";
+  watchedDivEl.classList.remove("hidden-in-library");
+  queuedDivEl.classList.add("hidden-in-library");
+  libraryInfoEl.classList.add("hidden-in-library");;
 });
 
 queueBtnEl.addEventListener("click", () => {
-  watchedDivEl.style.display = "none";
-  queuedDivEl.style.display = "block";
-  libraryInfoEl.style.display = "none";
+  watchedDivEl.classList.add("hidden-in-library");
+  queuedDivEl.classList.remove("hidden-in-library");
+  libraryInfoEl.classList.add("hidden-in-library");
 });
