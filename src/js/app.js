@@ -105,11 +105,19 @@ export const fetchMostPopular = async () => {
     movies.forEach(movie => {
       const card = document.createElement("div");
       card.className = "card";
+
+      const posterSrc = movie.poster_path
+        ? `${IMG_URL}${movie.poster_path}`
+        : "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png";
+      const posterAlt = movie.poster_path
+        ? movie.original_title
+        : "Poster Not Found";
+
       card.innerHTML = `
         <div id="card" class="card" >
-          <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${
+          <img class="card__poster" src="${posterSrc}" alt="${posterAlt}" title="${
         movie.original_title
-      }" title="${movie.original_title}" />
+      }" />
         </div>
         <div class="card__content">
           <div class="card__info">
@@ -130,7 +138,6 @@ export const fetchMostPopular = async () => {
         modalBoxShow(movie);
       });
 
-      
     });
   };
 

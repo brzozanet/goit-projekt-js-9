@@ -8,6 +8,8 @@ const userMovies = new UserMovies();
 
 const SEARCH_API = `${URL}/search/movie?api_key=${API_KEY}&query=`;
 
+const API_URL = `${URL}/discover/movie?include_adult=false&include_video=false&language=${LANGUAGE}&page=1&sort_by=popularity.desc&api_key=${API_KEY}`;
+
 const form = document.querySelector("#form");
 const search = document.querySelector("#search");
 const moviesContainerEl = document.querySelector(".movies-container");
@@ -45,33 +47,24 @@ function showMovies(movies) {
       .map(genreId => genres.find(genre => genre.id === genreId).name)
       .join(", ");
 
-    if (!poster_path) {
-      movieEl.innerHTML = `
-      <div id="card" class="card">
-        <img class="card__poster" src="src/images/not-found.jpg" alt="${original_title}" title="${original_title}" />
-        <div class="card__content">
-          <div class="card__info">
-            <div class="card__title">${original_title}</div>
-            <div class="card__genre">${movieGenres} |</div>
-            <div class="card__release">${release_date.slice(0, 4)} </div>
-            
-          </div>
-        </div>
-      </div>`;
-    } else {
-      movieEl.innerHTML = `
-      <div id="card" class="card">
-        <img class="card__poster" src="${IMG_URL}${poster_path}" alt="${original_title}" title="${original_title}" />
-        <div class="card__content">
-          <div class="card__info">
-            <div class="card__title">${original_title}</div>
-            <div class="card__genre">${movieGenres} |</div>
-            <div class="card__release">${release_date.slice(0, 4)} </div>
-            
-          </div>
-        </div>
-      </div>`;
-    }
+    // Sprawdź, czy poster_path istnieje
+    const posterSrc = poster_path
+      ? `${IMG_URL}${poster_path}`
+      : "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png";
+    const posterAlt = poster_path ? original_title : "Poster Not Found";
+
+    movieEl.innerHTML = `
+  <div id="card" class="card">
+    <img class="card__poster" src="${posterSrc}" alt="${posterAlt}" title="${original_title}" />
+    <div class="card__content">
+      <div class="card__info">
+        <div class="card__title">${original_title}</div>
+        <div class="card__genre">${movieGenres} |</div>
+        <div class="card__release">${release_date.slice(0, 4)} </div>
+      </div>
+    </div>
+  </div>`;
+
     moviesContainerEl.appendChild(movieEl);
 
     // ================================ SHOW MODAL ================================
