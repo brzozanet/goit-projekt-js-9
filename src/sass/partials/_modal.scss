@@ -32,10 +32,6 @@
   overflow: hidden visible;
   transition: 1000ms;
 
-  &__photo {
-    margin-bottom: 20px;
-  }
-
   &__item {
     display: flex;
     flex-direction: column;
@@ -171,6 +167,7 @@
     display: flex;
     gap: 20px;
   }
+
   &__trailer {
     position: relative;
     padding-bottom: 56.25%;
@@ -183,6 +180,7 @@
     width: 100%;
     height: 100%;
   }
+
   &__button {
     width: 110px;
     height: 44px;
@@ -221,12 +219,7 @@
     &__item {
       display: flex;
       flex-direction: row;
-      gap: 68px;
-    }
-
-    &__photo {
-      width: 264px;
-      padding-right: 0;
+      gap: 20px;
     }
 
     &__button {

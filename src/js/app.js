@@ -76,6 +76,7 @@ export const fetchMostPopular = async () => {
   };
 
   const handleScroll = async () => {
+    hideSpinner();
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
 
     if (scrollTop + clientHeight >= scrollHeight - 10) {
