@@ -1,7 +1,7 @@
 import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { UserMovies } from "./local-storage";
-import { modalBoxShow } from "./modal";
+import { modalBoxShow } from "./modal-library";
 
 let currentPage = 1;
 let totalPages = 0;
