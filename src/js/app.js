@@ -128,8 +128,9 @@ export const fetchMostPopular = async () => {
       if (!moviesContainerEl) return;
       moviesContainerEl.appendChild(card);
 
-      card.addEventListener("click", () => {
+      card.addEventListener("click", async () => {
         modalBoxShow(movie);
+        await getTrailerLink(movie.id);
       });
     });
   };
@@ -138,3 +139,31 @@ export const fetchMostPopular = async () => {
 };
 
 fetchMostPopular();
+
+const getTrailerLink = async id => {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/videos?language=${LANGUAGE}`,
+      options
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    const { results } = data;
+    const key = results[0].key;
+    const youtubeLink = `https://www.youtube.com/embed/${key}`;
+    const trailerEl = document.querySelector(".modal__trailer");
+    trailerEl.innerHTML = `<iframe id="modal__trailer-video" width="373" height="210" src="${youtubeLink}" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  } catch (error) {
+    console.error(error);
+  }
+};
