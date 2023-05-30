@@ -1,14 +1,11 @@
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { showSpinner, hideSpinner } from "./loading-spinner";
-import { UserMovies } from "./local-storage";
+// import { UserMovies } from "./local-storage";
 import { modalBoxShow } from "./modal";
 import "./search-box";
 
+// const userMovies = new UserMovies();
 
-
-const userMovies = new UserMovies();
-
-  
 export const fetchMostPopular = async () => {
   let currentPage = 1;
   let totalPages = 0;
@@ -20,7 +17,7 @@ export const fetchMostPopular = async () => {
     },
   };
 
-   const fetchPopularData = async page => {
+  const fetchPopularData = async page => {
     try {
       showSpinner();
       const response = await fetch(
@@ -129,18 +126,15 @@ export const fetchMostPopular = async () => {
 
       const moviesContainerEl = document.querySelector("#gallery");
       if (!moviesContainerEl) return;
-      console.log("tekst")
       moviesContainerEl.appendChild(card);
-
-      // ================================ SHOW MODAL ================================
 
       card.addEventListener("click", () => {
         modalBoxShow(movie);
       });
-
     });
   };
 
   await matchGenres();
 };
+
 fetchMostPopular();

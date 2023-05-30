@@ -3,7 +3,6 @@ export const showSpinner = () => {
 
   if (!spinnerEl) return;
   spinnerEl.style.display = "block";
-  // spinnerEl.style.display = "flex";
 };
 
 export const hideSpinner = () => {

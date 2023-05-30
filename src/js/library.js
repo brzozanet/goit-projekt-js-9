@@ -5,50 +5,49 @@ import { modalBoxShow } from "./modal";
 
 let currentPage = 1;
 let totalPages = 0;
+
 const fetchPopularData = async page => {
-    try {
-      // showSpinner();
-      const response = await fetch(
-        `${URL}movie/popular?language=${LANGUAGE}&page=${page}&api_key=${API_KEY}`
-      );
-      const data = await response.json();
-      // hideSpinner();
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
+  try {
+    // showSpinner();
+    const response = await fetch(
+      `${URL}movie/popular?language=${LANGUAGE}&page=${page}&api_key=${API_KEY}`
+    );
+    const data = await response.json();
+    // hideSpinner();
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 };
-  
+
 const fetchGenres = async () => {
-    try {
-      const response = await fetch(
-        `${URL}genre/movie/list?api_key=${API_KEY}`
-      );
-      const genreNames = await response.json();
-      return genreNames.genres;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  
-  const matchGenres = async () => {
-    const genres = await fetchGenres();
-    const popularMoviesData = await fetchPopularData(currentPage);
-    const movies = popularMoviesData.results.map(movie => {
-      const movieGenresIds = movie.genre_ids;
-      const matchedGenres = [];
-      for (let i = 0; i < movieGenresIds.length; i++) {
-        for (let j = 0; j < genres.length; j++) {
-          if (movieGenresIds[i] === genres[j].id) {
-            matchedGenres.push(genres[j].name);
-          }
+  try {
+    const response = await fetch(`${URL}genre/movie/list?api_key=${API_KEY}`);
+    const genreNames = await response.json();
+    return genreNames.genres;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const matchGenres = async () => {
+  const genres = await fetchGenres();
+  const popularMoviesData = await fetchPopularData(currentPage);
+  const movies = popularMoviesData.results.map(movie => {
+    const movieGenresIds = movie.genre_ids;
+    const matchedGenres = [];
+    for (let i = 0; i < movieGenresIds.length; i++) {
+      for (let j = 0; j < genres.length; j++) {
+        if (movieGenresIds[i] === genres[j].id) {
+          matchedGenres.push(genres[j].name);
         }
       }
-      movie.genres = matchedGenres;
-      return movie;
-    });
-    return movies;
-  };
+    }
+    movie.genres = matchedGenres;
+    return movie;
+  });
+  return movies;
+};
 
 let watchedMovies = JSON.parse(localStorage.getItem("watched-movies"));
 let queuedMovies = JSON.parse(localStorage.getItem("queued-movies"));
@@ -63,9 +62,7 @@ if (watchedMovies && Array.isArray(watchedMovies)) {
       card.className = "card";
       card.innerHTML = `
           <div id="card" class="card" >
-            <img class="card__poster" src="${IMG_URL}${
-        movie.poster_path
-      }" alt="${movie.original_title}" title="${movie.original_title}" />
+            <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}" />
           </div>
           <div class="card__content">
             <div class="card__info">
@@ -75,13 +72,14 @@ if (watchedMovies && Array.isArray(watchedMovies)) {
             </div>
           </div>`;
       card.addEventListener("click", () => {
-      modalBoxShow(movie);
-    });
+        modalBoxShow(movie);
+      });
       watchedMoviesContainerEl.appendChild(card);
       watchedMoviesContainerEl.classList.remove("hiddenColor");
     });
   };
   showWatchedMovies(watchedMovies);
+
 } else {
   const noWatchedMovies = document.createElement("div");
   noWatchedMovies.innerHTML = `
@@ -98,9 +96,7 @@ if (queuedMovies && Array.isArray(queuedMovies)) {
       card.className = "card";
       card.innerHTML = `
           <div id="card" class="card" >
-            <img class="card__poster" src="${IMG_URL}${
-        movie.poster_path
-      }" alt="${movie.original_title}" title="${movie.original_title}" />
+            <img class="card__poster" src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" title="${movie.original_title}" />
           </div>
           <div class="card__content">
             <div class="card__info">
@@ -110,13 +106,14 @@ if (queuedMovies && Array.isArray(queuedMovies)) {
             </div>
           </div>`;
       card.addEventListener("click", () => {
-      modalBoxShow(movie);
-    });
+        modalBoxShow(movie);
+      });
       queuedMoviesContainerEl.appendChild(card);
       queuedMoviesContainerEl.classList.remove("hiddenColor");
     });
   };
   showQueuedMovies(queuedMovies);
+  
 } else {
   const noQueuedMovies = document.createElement("div");
   noQueuedMovies.innerHTML = `
@@ -135,7 +132,7 @@ const libraryInfoEl = document.querySelector("#library-info");
 watchedBtnEl.addEventListener("click", () => {
   watchedDivEl.classList.remove("hidden-in-library");
   queuedDivEl.classList.add("hidden-in-library");
-  libraryInfoEl.classList.add("hidden-in-library");;
+  libraryInfoEl.classList.add("hidden-in-library");
 });
 
 queueBtnEl.addEventListener("click", () => {
