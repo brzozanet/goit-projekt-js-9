@@ -46,33 +46,24 @@ function showMovies(movies) {
       .map(genreId => genres.find(genre => genre.id === genreId).name)
       .join(", ");
 
-    if (!poster_path) {
-      movieEl.innerHTML = `
-      <div id="card" class="card">
-        <img class="card__poster" src="src/images/not-found.jpg" alt="${original_title}" title="${original_title}" />
-        <div class="card__content">
-          <div class="card__info">
-            <div class="card__title">${original_title}</div>
-            <div class="card__genre">${movieGenres} |</div>
-            <div class="card__release">${release_date.slice(0, 4)} </div>
-            
-          </div>
-        </div>
-      </div>`;
-    } else {
-      movieEl.innerHTML = `
-      <div id="card" class="card">
-        <img class="card__poster" src="${IMG_URL}${poster_path}" alt="${original_title}" title="${original_title}" />
-        <div class="card__content">
-          <div class="card__info">
-            <div class="card__title">${original_title}</div>
-            <div class="card__genre">${movieGenres} |</div>
-            <div class="card__release">${release_date.slice(0, 4)} </div>
-            
-          </div>
-        </div>
-      </div>`;
-    }
+    // Sprawdź, czy poster_path istnieje
+    const posterSrc = poster_path
+      ? `${IMG_URL}${poster_path}`
+      : "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png";
+    const posterAlt = poster_path ? original_title : "Poster Not Found";
+
+    movieEl.innerHTML = `
+  <div id="card" class="card">
+    <img class="card__poster" src="${posterSrc}" alt="${posterAlt}" title="${original_title}" />
+    <div class="card__content">
+      <div class="card__info">
+        <div class="card__title">${original_title}</div>
+        <div class="card__genre">${movieGenres} |</div>
+        <div class="card__release">${release_date.slice(0, 4)} </div>
+      </div>
+    </div>
+  </div>`;
+
     moviesContainerEl.appendChild(movieEl);
 
     // ================================ SHOW MODAL ================================
@@ -94,7 +85,13 @@ function showMovies(movies) {
       const aboutEl = document.querySelector(".modal__about-text");
 
       popupEl.classList.remove("is-hidden");
-      imageEl.src = `${IMG_URL}${movie.poster_path}`;
+      const posterSrc = movie.poster_path
+        ? `${IMG_URL}${movie.poster_path}`
+        : "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png";
+      const posterAlt = movie.poster_path
+        ? movie.original_title
+        : "Poster Not Found";
+      imageEl.innerHTML = `<img class="posters__img" src="${posterSrc}" alt="${posterAlt}"/>`;
       titleEl.innerHTML = `${movie.original_title}`;
       voteEl.innerHTML = `${movie.vote_average}`;
       votesEl.innerHTML = `${movie.vote_count}`;
