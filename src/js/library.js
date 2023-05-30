@@ -1,4 +1,6 @@
+import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
+import { UserMovies } from "./local-storage";
 
 let watchedMovies = JSON.parse(localStorage.getItem("watched-movies"));
 let queuedMovies = JSON.parse(localStorage.getItem("queued-movies"));
