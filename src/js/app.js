@@ -20,7 +20,7 @@ export const fetchMostPopular = async () => {
     },
   };
 
-  const fetchPopularData = async page => {
+   const fetchPopularData = async page => {
     try {
       showSpinner();
       const response = await fetch(
