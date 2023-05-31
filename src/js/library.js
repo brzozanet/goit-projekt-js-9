@@ -176,7 +176,6 @@ const getTrailerLink = async id => {
     const youtubeLink = `https://www.youtube.com/embed/${key}`;
     const trailerEl = document.querySelector(".modal__trailer");
     trailerEl.innerHTML = `<iframe id="modal__trailer-video" width="373" height="210" src="${youtubeLink}" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-    console.log(youtubeLink);
   } catch (error) {
     console.error(error);
   }
