@@ -100,7 +100,8 @@ function showMovies(movies) {
 if (form !== null)
   form.addEventListener(
     "input",
-    debounce(() => {
+    debounce((event) => {
+      event.preventDefault();
       const searchTerm = search.value;
       const searchUrl = SEARCH_API + searchTerm;
       if (searchTerm && searchTerm !== "") {
