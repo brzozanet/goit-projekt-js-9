@@ -70,8 +70,8 @@ function showMovies(movies) {
     // Sprawdź, czy poster_path istnieje
     const posterSrc = poster_path
       ? `${IMG_URL}${poster_path}`
-      : // : "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png";
-        "./images/poster-placeholder.png";
+      : "https://fotowarsztaty.com/wp-content/uploads/poster-placeholder.png";
+
     const posterAlt = poster_path ? original_title : "Poster Not Found";
 
     movieEl.innerHTML = `

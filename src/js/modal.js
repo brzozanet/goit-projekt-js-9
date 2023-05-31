@@ -20,11 +20,12 @@ export const modalBoxShow = movie => {
 
   const posterSrc = movie.poster_path
     ? `${IMG_URL}${movie.poster_path}`
-    : // : "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png";
-      "./images/poster-placeholder.png";
+    : "https://fotowarsztaty.com/wp-content/uploads/poster-placeholder.png";
+
   const posterAlt = movie.poster_path
     ? movie.original_title
     : "Poster Not Found";
+
   imageEl.innerHTML = `<img class="posters__img" src="${posterSrc}" alt="${posterAlt}"/>`;
   titleEl.innerHTML = `${movie.original_title}`;
   voteEl.innerHTML = `${movie.vote_average}`;
@@ -32,6 +33,7 @@ export const modalBoxShow = movie => {
   popularityEl.innerHTML = `${movie.popularity}`;
   originalTitleEl.innerHTML = `${movie.original_title}`;
   aboutEl.innerHTML = `${movie.overview}`;
+
   const { genre_ids } = movie;
   const movieGenres = genre_ids
     .map(genreId => {
@@ -42,7 +44,6 @@ export const modalBoxShow = movie => {
   genreEl.innerHTML = movieGenres;
 
   const url = window.location.pathname;
-  console.log(url);
 
   if (url === "/index.html") {
     document.querySelector(".modal__info-buttons").style.display = "block";
