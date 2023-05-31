@@ -109,8 +109,8 @@ if (form !== null)
       const searchUrl = SEARCH_API + searchTerm;
       if (searchTerm && searchTerm !== "") {
         getMovies(searchUrl);
-      } else {
-        window.location.reload();
+      // } else {
+      //   window.location.reload();
       }
     }, DEBOUNCE_DELAY)
   );
