@@ -3,7 +3,7 @@ import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 // import { UserMovies } from "./local-storage";
 import { modalBoxShow } from "./modal-library";
 import Notiflix from "notiflix";
-// import { getTrailerLink } from "./app";
+
 let currentPage = 1;
 let totalPages = 0;
 
@@ -114,8 +114,9 @@ if (queuedMovies && Array.isArray(queuedMovies)) {
               <div class="card__release">${movie.release_date.slice(0, 4)}</div>
             </div>
           </div>`;
-      card.addEventListener("click", () => {
+      card.addEventListener("click", async () => {
         modalBoxShow(movie);
+        await getTrailerLink(movie.id);
       });
       queuedMoviesContainerEl.appendChild(card);
       queuedMoviesContainerEl.classList.remove("hiddenColor");
