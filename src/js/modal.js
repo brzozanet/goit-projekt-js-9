@@ -51,8 +51,6 @@ export const modalBoxShow = movie => {
   genreEl.innerHTML = movieGenres;
 
   const url = window.location.pathname;
-  console.log(url);
-
   if (
     url === "/index.html" ||
     url === `${PROJECT_LOCATION_PATH}/` ||

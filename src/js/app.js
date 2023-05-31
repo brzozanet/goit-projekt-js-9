@@ -1,4 +1,10 @@
-import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
+import {
+  PROJECT_LOCATION_PATH,
+  API_KEY,
+  IMG_URL,
+  URL,
+  LANGUAGE,
+} from "./setup";
 import { showSpinner, hideSpinner } from "./loading-spinner";
 import { modalBoxShow } from "./modal";
 import "./search-box";

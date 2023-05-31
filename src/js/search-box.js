@@ -1,5 +1,11 @@
 import "../sass/main.scss";
-import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
+import {
+  PROJECT_LOCATION_PATH,
+  API_KEY,
+  IMG_URL,
+  URL,
+  LANGUAGE,
+} from "./setup";
 import { UserMovies } from "./local-storage";
 import { genres } from "./genres";
 import { modalBoxShow } from "./modal";
@@ -21,8 +27,6 @@ Notiflix.Notify.init({
 const userMovies = new UserMovies();
 
 const SEARCH_API = `${URL}/search/movie?api_key=${API_KEY}&query=`;
-// const API_URL = `${URL}/discover/movie?include_adult=false&include_video=false&language=${LANGUAGE}&page=1&sort_by=popularity.desc&api_key=${API_KEY}`;
-
 const form = document.querySelector("#form");
 const search = document.querySelector("#search");
 const moviesContainerEl = document.querySelector(".movies-container");
@@ -67,7 +71,6 @@ function showMovies(movies) {
       })
       .join(", ");
 
-    // Sprawdź, czy poster_path istnieje
     const posterSrc = poster_path
       ? `${IMG_URL}${poster_path}`
       : "https://fotowarsztaty.com/wp-content/uploads/poster-placeholder.png";
@@ -109,8 +112,8 @@ if (form !== null)
       const searchUrl = SEARCH_API + searchTerm;
       if (searchTerm && searchTerm !== "") {
         getMovies(searchUrl);
-      // } else {
-      //   window.location.reload();
+        // } else {
+        //   window.location.reload();
       }
     }, DEBOUNCE_DELAY)
   );
