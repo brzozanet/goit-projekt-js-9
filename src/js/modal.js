@@ -56,12 +56,14 @@ export const modalBoxShow = movie => {
     url === `${PROJECT_LOCATION_PATH}/` ||
     url === `${PROJECT_LOCATION_PATH}/index.html`
   ) {
-    document.querySelector(".modal__info-buttons").style.display = "block";
+    document
+      .querySelector(".modal__info-buttons")
+      .classList.remove("is-hidden");
   } else if (
     url === "/library.html" ||
     url === `${PROJECT_LOCATION_PATH}/library.html`
   ) {
-    document.querySelector(".modal__info-buttons").style.display = "none";
+    document.querySelector(".modal__info-buttons").classList.add("is-hidden");
   }
 
   const addWatchBtnEl = document.querySelector("#modal__button-watched");
