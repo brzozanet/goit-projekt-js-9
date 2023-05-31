@@ -32,6 +32,14 @@ export const modalBoxShow = movie => {
   genreEl.innerHTML = `${movie.genres.join(", ")}`;
   aboutEl.innerHTML = `${movie.overview}`;
 
+  const url = window.location.pathname;
+
+  if (url === "/index.html") {
+    document.querySelector(".modal__info-buttons").style.display = "block";
+  } else if (url === "/library.html") {
+    document.querySelector(".modal__info-buttons").style.display = "none";
+  }
+
   const addWatchBtnEl = document.querySelector("#modal__button-watched");
   const addQueueBtnEl = document.querySelector("#modal__button-queue");
 
