@@ -21,7 +21,7 @@ Notiflix.Notify.init({
 const userMovies = new UserMovies();
 
 const SEARCH_API = `${URL}/search/movie?api_key=${API_KEY}&query=`;
-const API_URL = `${URL}/discover/movie?include_adult=false&include_video=false&language=${LANGUAGE}&page=1&sort_by=popularity.desc&api_key=${API_KEY}`;
+// const API_URL = `${URL}/discover/movie?include_adult=false&include_video=false&language=${LANGUAGE}&page=1&sort_by=popularity.desc&api_key=${API_KEY}`;
 
 const form = document.querySelector("#form");
 const search = document.querySelector("#search");
@@ -63,7 +63,7 @@ function showMovies(movies) {
     const movieGenres = genre_ids
       .map(genreId => genres.find(genre => genre.id === genreId).name)
       .join(", ");
-    console.error;
+    console.error();
 
     // Sprawdź, czy poster_path istnieje
     const posterSrc = poster_path
