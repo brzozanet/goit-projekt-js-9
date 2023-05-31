@@ -29,7 +29,9 @@ export const modalBoxShow = movie => {
   votesEl.innerHTML = `${movie.vote_count}`;
   popularityEl.innerHTML = `${movie.popularity}`;
   originalTitleEl.innerHTML = `${movie.original_title}`;
-  genreEl.innerHTML = `${movie.genres.join(", ")}`;
+  genreEl.innerHTML = movie.genres;
+  console.log(movie.genres);
+
   aboutEl.innerHTML = `${movie.overview}`;
 
   const url = window.location.pathname;

@@ -22,7 +22,7 @@ export const modalBoxShow = movie => {
   votesEl.innerHTML = `${movie.vote_count}`;
   popularityEl.innerHTML = `${movie.popularity}`;
   originalTitleEl.innerHTML = `${movie.original_title}`;
-  genreEl.innerHTML = `${movie.genres.join(", ")}`;
+  genreEl.innerHTML = `${movie.genres}`;
   aboutEl.innerHTML = `${movie.overview}`;
 
   const addWatchBtnEl = document.querySelector("#modal__button-watched");
