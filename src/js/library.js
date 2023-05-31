@@ -1,6 +1,6 @@
 import "../sass/main.scss";
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
-import { UserMovies } from "./local-storage";
+// import { UserMovies } from "./local-storage";
 import { modalBoxShow } from "./modal-library";
 import Notiflix from "notiflix";
 // import { getTrailerLink } from "./app";

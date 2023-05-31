@@ -1,6 +1,6 @@
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { showSpinner, hideSpinner } from "./loading-spinner";
-import { UserMovies } from "./local-storage";
+// import { UserMovies } from "./local-storage";
 import { modalBoxShow } from "./modal";
 import "./search-box";
 import Notiflix from "notiflix";
@@ -112,7 +112,8 @@ export const fetchMostPopular = async () => {
 
       const posterSrc = movie.poster_path
         ? `${IMG_URL}${movie.poster_path}`
-        : "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png";
+        // : "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png";
+        : "./images/poster-placeholder.png";
       const posterAlt = movie.poster_path
         ? movie.original_title
         : "Poster Not Found";
