@@ -55,6 +55,10 @@
     line-height: 1.33;
     color: $IIIColor;
   }
+  &__poster {
+    width: 280px;
+    height: 398px;
+  }
 }
 
 @for $i from 1 through 20 {
@@ -90,6 +94,7 @@
 
     &__poster {
       width: 336px;
+      height: 455px;
     }
   }
 
@@ -107,6 +112,7 @@
 
     .card__poster {
       width: 395px;
+      height: 574px;
     }
   }
 }
