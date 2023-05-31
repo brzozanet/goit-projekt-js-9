@@ -61,9 +61,11 @@ function showMovies(movies) {
     movieEl.classList.add("card");
 
     const movieGenres = genre_ids
-      .map(genreId => genres.find(genre => genre.id === genreId).name)
+      .map(genreId => {
+        const genre = genres.find(genre => genre.id === genreId);
+        return genre ? genre.name : "";
+      })
       .join(", ");
-    console.error();
 
     // Sprawdź, czy poster_path istnieje
     const posterSrc = poster_path
@@ -85,8 +87,9 @@ function showMovies(movies) {
 
     moviesContainerEl.appendChild(movieEl);
 
-    movieEl.addEventListener("click", () => {
+    movieEl.addEventListener("click", async () => {
       modalBoxShow(movie);
+      await getTrailerLink(movie.id);
     });
 
     const addWatchBtnEl = document.querySelector("#modal__button-watched");
@@ -100,7 +103,8 @@ function showMovies(movies) {
 if (form !== null)
   form.addEventListener(
     "input",
-    debounce(() => {
+    debounce((event) => {
+      event.preventDefault();
       const searchTerm = search.value;
       const searchUrl = SEARCH_API + searchTerm;
       if (searchTerm && searchTerm !== "") {
@@ -110,3 +114,31 @@ if (form !== null)
       }
     }, DEBOUNCE_DELAY)
   );
+
+const getTrailerLink = async id => {
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/videos?language=${LANGUAGE}&api_key=${API_KEY}`,
+      options
+    );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    const { results } = data;
+    const key = results[0].key;
+    const youtubeLink = `https://www.youtube.com/embed/${key}`;
+    const trailerEl = document.querySelector(".modal__trailer");
+    trailerEl.innerHTML = `<iframe id="modal__trailer-video" width="373" height="210" src="${youtubeLink}" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  } catch (error) {
+    console.error(error);
+  }
+};
