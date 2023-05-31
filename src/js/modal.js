@@ -54,8 +54,10 @@ export const modalBoxShow = movie => {
   console.log(url);
 
   if (
-    url === "/index.html" || 
-    url === `${PROJECT_LOCATION_PATH}/index.html`) {
+    url === "/index.html" ||
+    url === `${PROJECT_LOCATION_PATH}/` ||
+    url === `${PROJECT_LOCATION_PATH}/index.html`
+  ) {
     document.querySelector(".modal__info-buttons").style.display = "block";
   } else if (
     url === "/library.html" ||
