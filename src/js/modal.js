@@ -1,5 +1,6 @@
 import { IMG_URL } from "./setup";
 import { UserMovies } from "./local-storage";
+import { genres } from "./genres";
 
 const userMovies = new UserMovies();
 
@@ -29,10 +30,15 @@ export const modalBoxShow = movie => {
   votesEl.innerHTML = `${movie.vote_count}`;
   popularityEl.innerHTML = `${movie.popularity}`;
   originalTitleEl.innerHTML = `${movie.original_title}`;
-  genreEl.innerHTML = movie.genres;
-  console.log(movie.genres);
-
   aboutEl.innerHTML = `${movie.overview}`;
+  const { genre_ids } = movie;
+  const movieGenres = genre_ids
+    .map(genreId => {
+      const genre = genres.find(genre => genre.id === genreId);
+      return genre ? genre.name : "";
+    })
+    .join(", ");
+  genreEl.innerHTML = movieGenres;
 
   const url = window.location.pathname;
   console.log(url);

@@ -74,7 +74,7 @@ if (watchedMovies && Array.isArray(watchedMovies)) {
           <div class="card__content">
             <div class="card__info">
               <div class="card__title">${movie.original_title}</div>
-              <div class="card__genre">${movie.genres.join(", ")} |</div>
+              <div class="card__genre">${movie.genres} |</div>
               <div class="card__release">${movie.release_date.slice(0, 4)}</div>
             </div>
           </div>`;
@@ -110,7 +110,7 @@ if (queuedMovies && Array.isArray(queuedMovies)) {
           <div class="card__content">
             <div class="card__info">
               <div class="card__title">${movie.original_title}</div>
-              <div class="card__genre">${movie.genres.join(", ")} |</div>
+              <div class="card__genre">${movie.genres} |</div>
               <div class="card__release">${movie.release_date.slice(0, 4)}</div>
             </div>
           </div>`;

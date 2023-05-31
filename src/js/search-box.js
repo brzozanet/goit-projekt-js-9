@@ -59,7 +59,7 @@ function showMovies(movies) {
 
     const movieEl = document.createElement("div");
     movieEl.classList.add("card");
-
+    movieEl.id = "card";
     const movieGenres = genre_ids
       .map(genreId => {
         const genre = genres.find(genre => genre.id === genreId);
@@ -74,7 +74,6 @@ function showMovies(movies) {
     const posterAlt = poster_path ? original_title : "Poster Not Found";
 
     movieEl.innerHTML = `
-      <div id="card" class="card">
         <img class="card__poster" src="${posterSrc}" alt="${posterAlt}" title="${original_title}" />
         <div class="card__content">
           <div class="card__info">
@@ -103,7 +102,7 @@ function showMovies(movies) {
 if (form !== null)
   form.addEventListener(
     "input",
-    debounce((event) => {
+    debounce(event => {
       event.preventDefault();
       const searchTerm = search.value;
       const searchUrl = SEARCH_API + searchTerm;
