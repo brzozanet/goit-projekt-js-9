@@ -16,7 +16,7 @@ export const modalBoxShow = movie => {
   const aboutEl = document.querySelector(".modal__about-text");
 
   popupEl.classList.remove("is-hidden");
-  imageEl.innerHTML = `<img src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" class="modal__photo">`;  
+  imageEl.innerHTML = `<img src="${IMG_URL}${movie.poster_path}" alt="${movie.original_title}" class="modal__photo">`;
   titleEl.innerHTML = `${movie.original_title}`;
   voteEl.innerHTML = `${movie.vote_average}`;
   votesEl.innerHTML = `${movie.vote_count}`;
@@ -28,10 +28,10 @@ export const modalBoxShow = movie => {
   const addWatchBtnEl = document.querySelector("#modal__button-watched");
   const addQueueBtnEl = document.querySelector("#modal__button-queue");
 
-    addWatchBtnEl.classList.add("is-hidden");
-    addQueueBtnEl.classList.add("is-hidden");
-//   addWatchBtnEl.addEventListener("click", () => userMovies.addToWatch(movie));
-//   addQueueBtnEl.addEventListener("click", () => userMovies.addToQueue(movie));
+  addWatchBtnEl.classList.add("is-hidden");
+  addQueueBtnEl.classList.add("is-hidden");
+  //   addWatchBtnEl.addEventListener("click", () => userMovies.addToWatch(movie));
+  //   addQueueBtnEl.addEventListener("click", () => userMovies.addToQueue(movie));
 
   closeBtnEl.addEventListener("click", () => {
     popupEl.classList.add("is-hidden");

@@ -33,6 +33,7 @@ export const modalBoxShow = movie => {
   aboutEl.innerHTML = `${movie.overview}`;
 
   const url = window.location.pathname;
+  console.log(url);
 
   if (url === "/index.html") {
     document.querySelector(".modal__info-buttons").style.display = "block";
