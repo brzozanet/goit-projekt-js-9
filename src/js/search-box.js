@@ -3,6 +3,20 @@ import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { UserMovies } from "./local-storage";
 import { genres } from "./genres";
 import { modalBoxShow } from "./modal";
+import Notiflix from "notiflix";
+import debounce from "lodash/debounce";
+
+const DEBOUNCE_DELAY = 1000;
+
+Notiflix.Notify.init({
+  width: "280px",
+  position: "center-top",
+  timeout: 4000,
+  closeButton: false,
+  distance: "25px",
+  borderRadius: "10px",
+  fontSize: "18px",
+});
 
 const userMovies = new UserMovies();
 
@@ -17,12 +31,17 @@ async function getMovies(url) {
   try {
     const res = await fetch(url);
     if (!res.ok) {
-      throw new Error("Network response was not ok");
+      throw new Notiflix.Notify.warning(
+        "Sorry, the server is not responding. Please try again later."
+      );
     }
     const data = await res.json();
+    if (data.results.length === 0) {
+      throw new Notiflix.Notify.failure("MOVIE  NOT  FOUND");
+    }
     showMovies(data.results);
   } catch (error) {
-    console.error(error);
+    console.log("MOVIE  NOT  FOUND");
   }
 }
 
@@ -44,6 +63,7 @@ function showMovies(movies) {
     const movieGenres = genre_ids
       .map(genreId => genres.find(genre => genre.id === genreId).name)
       .join(", ");
+    console.error;
 
     // Sprawdź, czy poster_path istnieje
     const posterSrc = poster_path
@@ -78,13 +98,15 @@ function showMovies(movies) {
 }
 
 if (form !== null)
-  form.addEventListener("input", () => {
-    const searchTerm = search.value;
-
-    if (searchTerm && searchTerm !== "") {
+  form.addEventListener(
+    "input",
+    debounce(() => {
+      const searchTerm = search.value;
       const searchUrl = SEARCH_API + searchTerm;
-      getMovies(searchUrl);
-    } else {
-      window.location.reload();
-    }
-  });
+      if (searchTerm && searchTerm !== "") {
+        getMovies(searchUrl);
+      } else {
+        window.location.reload();
+      }
+    }, DEBOUNCE_DELAY)
+  );

@@ -16,6 +16,7 @@ export const modalBoxShow = movie => {
   const aboutEl = document.querySelector(".modal__about-text");
 
   popupEl.classList.remove("is-hidden");
+
   const posterSrc = movie.poster_path
     ? `${IMG_URL}${movie.poster_path}`
     : "https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-1-scaled-1150x647.png";
