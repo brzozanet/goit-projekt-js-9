@@ -108,6 +108,7 @@ export const fetchMostPopular = async () => {
     movies.forEach(movie => {
       const card = document.createElement("div");
       card.className = "card";
+      card.id = "card";
 
       const posterSrc = movie.poster_path
         ? `${IMG_URL}${movie.poster_path}`
@@ -117,7 +118,6 @@ export const fetchMostPopular = async () => {
         : "Poster Not Found";
 
       card.innerHTML = `
-        <div id="card" class="card" >
           <img class="card__poster" src="${posterSrc}" alt="${posterAlt}" title="${
         movie.original_title
       }" />
