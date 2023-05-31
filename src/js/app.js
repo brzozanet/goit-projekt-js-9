@@ -1,11 +1,8 @@
 import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
 import { showSpinner, hideSpinner } from "./loading-spinner";
-// import { UserMovies } from "./local-storage";
 import { modalBoxShow } from "./modal";
 import "./search-box";
 import Notiflix from "notiflix";
-
-// const userMovies = new UserMovies();
 
 export const fetchMostPopular = async () => {
   let currentPage = 1;
@@ -113,7 +110,7 @@ export const fetchMostPopular = async () => {
       const posterSrc = movie.poster_path
         ? `${IMG_URL}${movie.poster_path}`
         : "https://fotowarsztaty.com/wp-content/uploads/poster-placeholder.png";
-        
+
       const posterAlt = movie.poster_path
         ? movie.original_title
         : "Poster Not Found";

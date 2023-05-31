@@ -1,7 +1,12 @@
 import "../sass/main.scss";
-import { API_KEY, IMG_URL, URL, LANGUAGE } from "./setup";
-// import { UserMovies } from "./local-storage";
-import { modalBoxShow } from "./modal-library";
+import {
+  PROJECT_LOCATION_PATH,
+  API_KEY,
+  IMG_URL,
+  URL,
+  LANGUAGE,
+} from "./setup";
+import { modalBoxShow } from "./modal";
 import Notiflix from "notiflix";
 
 let currentPage = 1;
@@ -9,12 +14,10 @@ let totalPages = 0;
 
 const fetchPopularData = async page => {
   try {
-    // showSpinner();
     const response = await fetch(
       `${URL}movie/popular?language=${LANGUAGE}&page=${page}&api_key=${API_KEY}`
     );
     const data = await response.json();
-    // hideSpinner();
     return data;
   } catch (error) {
     Notiflix.Notify.failure(

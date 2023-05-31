@@ -1,3 +1,10 @@
+import {
+  PROJECT_LOCATION_PATH,
+  API_KEY,
+  IMG_URL,
+  URL,
+  LANGUAGE,
+} from "./setup";
 import { IMG_URL } from "./setup";
 import { UserMovies } from "./local-storage";
 import { genres } from "./genres";
@@ -44,10 +51,16 @@ export const modalBoxShow = movie => {
   genreEl.innerHTML = movieGenres;
 
   const url = window.location.pathname;
+  console.log(url);
 
-  if (url === "/index.html") {
+  if (
+    url === "/index.html" || 
+    url === `${PROJECT_LOCATION_PATH}/index.html`) {
     document.querySelector(".modal__info-buttons").style.display = "block";
-  } else if (url === "/library.html") {
+  } else if (
+    url === "/library.html" ||
+    url === `${PROJECT_LOCATION_PATH}/library.html`
+  ) {
     document.querySelector(".modal__info-buttons").style.display = "none";
   }
 
